@@ -1,0 +1,9 @@
+[submodule "thirdparty/SDL2"]
+	path = thirdparty/SDL2
+	url = git@github.com:libsdl-org/SDL.git
+[submodule "thirdparty/SDL2_ttf"]
+	path = thirdparty/SDL2_ttf
+	url = git@github.com:libsdl-org/SDL_ttf.git
+[submodule "thirdparty/Xoshiro"]
+	path = thirdparty/Xoshiro
+	url = git@github.com:Reputeless/Xoshiro-cpp.git
