@@ -84,6 +84,15 @@ xoshiro := Xoshiro
 xoshiro_root := $(thirdparty_dir)/$(xoshiro)
 xoshiro_inc := $(xoshiro_root)
 
+
+### JSON for Modern C++
+
+json := json
+
+json_root := $(thirdparty_dir)/$(json)
+json_inc := $(json_root)/single_include
+
+
 #### CoffeeBean
 
 engine := CoffeeBean
@@ -102,6 +111,7 @@ engine_cflags := \
 	-I$(engine_inc) \
 	-I$(xoshiro_inc) \
 	-I$(engine_src) \
+	-I$(json_inc)
 
 
 #### BeanPong (Test Game)
