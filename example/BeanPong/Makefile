@@ -12,7 +12,7 @@ CC := g++
 o := o
 
 ### Directories
-source := ../../src
+source := src
 obj := obj
 thirdparty_dir := ../../thirdparty
 
@@ -106,18 +106,18 @@ engine_cflags := \
 
 #### BeanPong (Test Game)
 
-beanpong := BeanPong
+#beanpong := BeanPong
 
-beanpong_root := .
-beanpong_src := $(beanpong_root)/src
-beanpong_inc := $(beanpong_root)/include
-beanpong_obj := $(obj)/$(beanpong)
-beanpong_src_files := $(wildcard $(beanpong_src)/*.cpp)
-beanpong_obj_files := $(addprefix $(beanpong_obj)/, $(notdir $(beanpong_src_files:.cpp=.o)))
+#beanpong_root := .
+#beanpong_src := ./src
+#beanpong_inc := $(beanpong_root)/include
+#beanpong_obj := $(obj)/$(beanpong)
+#beanpong_src_files := $(wildcard $(beanpong_src)/*.cpp)
+#beanpong_obj_files := $(addprefix $(beanpong_obj)/, $(notdir $(beanpong_src_files:.cpp=.o)))
 
 ### Game
 
-game_root := $(source)/$(GAME_NAME)
+game_root := .
 game_src := $(game_root)/src
 game_inc := $(game_root)/src
 game_obj := $(obj)/$(GAME_NAME)
@@ -152,7 +152,7 @@ all: $(GAME_NAME)
 $(GAME_NAME) : $(engine_obj_files) $(game_obj_files)
 	$(CC) \
 	$(engine_obj)/*.o \
-	$(beanpong_obj)/*.o \
+	$(game_obj)/*.o \
 	$(COMPILERFLAGS) \
 	-o $(GAME_NAME) \
 
