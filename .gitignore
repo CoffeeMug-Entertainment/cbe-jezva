@@ -1,3 +1,6 @@
+# Ignore the example game
+
+example/BeanPong/BeanPong
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,vim,emacs,sublimetext,visualstudio,visualstudiocode,codeblocks,c++,c,clion+all,eclipse,kate,kdevelop4
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,vim,emacs,sublimetext,visualstudio,visualstudiocode,codeblocks,c++,c,clion+all,eclipse,kate,kdevelop4
