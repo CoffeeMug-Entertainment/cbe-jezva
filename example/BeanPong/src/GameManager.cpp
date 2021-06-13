@@ -17,7 +17,7 @@ GameManager::~GameManager(){}
 void GameManager::MakeEntities()
 {
 	//TODO fhomolka 06/06/2021 15:31 -> Move this
-	Game::assetManager->AddFont("silkBold", "./source/BeanPong/assets/fonts/slkscrb.ttf", 20);
+	Game::assetManager->AddFont("silkBold", "./assets/fonts/slkscrb.ttf", 20);
 
 	//Ball
 	Entity& ball = Game::entityManager->AddEntity("Ball");
@@ -43,6 +43,7 @@ void GameManager::MakeEntities()
 	rightPaddle.AddComponent<C_PaddleMover>();
 	rightPaddle.AddComponent<C_PaddleAI>();
 
+
 	//UI
 	Entity& playerScore = Game::entityManager->AddEntity("PlayerScore");
 	playerScore.AddComponent<C_Text>(300, 20, "0", "silkBold", SDL_Color{255, 255, 255, 255});
@@ -51,6 +52,7 @@ void GameManager::MakeEntities()
 	Entity& AIScore = Game::entityManager->AddEntity("AIScore");
 	AIScore.AddComponent<C_Text>(450, 20, "0", "silkBold", SDL_Color{255, 255, 255, 255});
 	aiScoreLabel = AIScore.GetComponent<C_Text>();
+
 
 }
 
