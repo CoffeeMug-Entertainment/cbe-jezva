@@ -4,6 +4,7 @@
 #include "EntityManager.hpp"
 #include "TextureManager.hpp"
 #include "FontManager.hpp"
+#include "nlohmann/json.hpp"
 //#include <Data/Tilemap.hpp>
 
 #include <SDL2/SDL_ttf.h>
@@ -18,8 +19,9 @@ class AssetManager {
         ~AssetManager();
         void AddTexture(std::string textureId, const char* filePath);
 		SDL_Texture* GetTexture(std::string textureId);
-		void AddFont(std::string fontID, const char* filePath, int fontSize);
-		TTF_Font* GetFont(std::string fontID);
+		void AddFont(std::string fontId, const char* filePath, int fontSize);
+		TTF_Font* GetFont(std::string fontId);
+        void LoadFromAssetsJson(const char* filePath);
         //Tilemap* CreateTilemap(std::string textureId, std::string tilemapId, int tileSize, int margin = 0);
         //Tilemap* GetTilemap(std::string tilemapId);
     private:
@@ -30,5 +32,12 @@ class AssetManager {
 
 };
 
+
+struct FontInfo {
+
+    std::string id;
+    std::string filePath;
+    int size;
+};
 
 #endif

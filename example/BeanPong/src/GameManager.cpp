@@ -17,7 +17,8 @@ GameManager::~GameManager(){}
 void GameManager::MakeEntities()
 {
 	//TODO fhomolka 06/06/2021 15:31 -> Move this
-	Game::assetManager->AddFont("silkBold", "./assets/fonts/slkscrb.ttf", 20);
+	Game::assetManager->LoadFromAssetsJson("./assets/assets.json");
+	
 
 	//Ball
 	Entity& ball = Game::entityManager->AddEntity("Ball");
