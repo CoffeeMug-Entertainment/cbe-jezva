@@ -2,9 +2,9 @@
 	"Fonts": 
 	[
 		{
-		"id": "silkBold", 
-		"path": "./assets/fonts/slkscrb.ttf",
-		"size": 20
+			"id": "silkBold", 
+			"path": "./assets/fonts/slkscrb.ttf",
+			"size": 20
 		}
 	]
 } 
