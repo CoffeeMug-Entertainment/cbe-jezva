@@ -99,11 +99,13 @@ engine := CoffeeBean
 
 engine_root := ../..
 engine_src := $(engine_root)/src
+engine_rend_src := $(engine_src)/Renderers
 engine_comp_src := $(engine_src)/Components
 engine_type_src := $(engine_src)/Types
 engine_inc := $(engine_root)/include
 engine_obj := $(obj)/$(engine)
 engine_src_files := $(wildcard $(engine_src)/*.cpp) 
+engine_src_files += $(wildcard $(engine_rend_src)/*.cpp)
 engine_src_files += $(wildcard $(engine_comp_src)/*.cpp)
 engine_obj_files := $(addprefix $(engine_obj)/, $(notdir $(engine_src_files:.cpp=.o)))
 
@@ -180,6 +182,10 @@ run:
 #	$(CC) $(COMPILERFLAGS) -c $< -o $@
 
 $(engine_obj)/%.o: $(engine_src)/%.cpp
+	mkdir -p $(engine_obj)
+	$(CC) $(COMPILERFLAGS) -c $< -o $@
+
+$(engine_obj)/%.o: $(engine_rend_src)/%.cpp
 	mkdir -p $(engine_obj)
 	$(CC) $(COMPILERFLAGS) -c $< -o $@
 
