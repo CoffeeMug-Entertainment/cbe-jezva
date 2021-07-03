@@ -28,9 +28,9 @@ void C_Text::SetLabelText(std::string text, std::string newfontFamily) {
 
 	auto testFont = Game::assetManager->GetFont(fontFamily);
 	SDL_Surface* surface = TTF_RenderText_Blended(testFont, text.c_str(), this->color);
-	texture = SDL_CreateTextureFromSurface(Game::renderer, surface);
-	SDL_FreeSurface(surface);
-	SDL_QueryTexture(texture, NULL, NULL, &position.w, &position.h);
+	texture = Game::renderer->CreateTextureFromSurface(surface);
+	Game::renderer->FreeSurface(surface);
+	Game::renderer->QueryTexture(texture, NULL, NULL, &position.w, &position.h);
 }
 
 void C_Text::Render() {

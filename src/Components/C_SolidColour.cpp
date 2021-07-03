@@ -33,6 +33,6 @@ void C_SolidColour::Update(float deltaTime)
 
 void C_SolidColour::Render()
 {
-	SDL_SetRenderDrawColor(Game::renderer, this->colour.r, this->colour.g, this->colour.b, this->colour.a);
-	SDL_RenderFillRect(Game::renderer, &destinationRectangle);
+	Game::renderer->SetRenderDrawColor(this->colour.r, this->colour.g, this->colour.b, this->colour.a);
+	Game::renderer->RenderFillRect(&destinationRectangle);
 }
