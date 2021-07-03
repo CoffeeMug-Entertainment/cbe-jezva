@@ -1,7 +1,9 @@
 #include "Game.hpp"
 #include "EntityManager.hpp"
+#include "Renderers/Ren_Software.hpp"
 
-SDL_Renderer* Game::renderer;
+//SDL_Renderer* Game::renderer;
+CB_Renderer* Game::renderer;
 SDL_Window* Game::window;
 AssetManager* Game::assetManager;
 EntityManager* Game::entityManager;
@@ -80,16 +82,14 @@ void Game::Initialize(int width, int height){
 		return;
 	}
 
-	logger->Log("Creating an SDL_Renderer");
-	renderer = SDL_CreateRenderer(window, -1, 0);
+	this->renderer = new Ren_Software();
 
-	if (!renderer) {
-        logger->LogError("Error creating SDL renderer!");
+	if(!this->renderer->Initialize()){
 		return;
 	}
 
 	isRunning = true;
-	return;
+	//return;
 
 }
 
@@ -153,22 +153,12 @@ void Game::Update(){
 
 void Game::Render(){
 
-	SDL_SetRenderDrawColor(renderer, 21, 21, 21, 255);
-	SDL_RenderClear(renderer);
-	
-	//Call manager.render to render entities
-	if (entityManager->HasNoEntities()) {
-		//LogError("There are no Entities in the scene!");
-		return;
-	}
-	entityManager->Render();
-
-	SDL_RenderPresent(renderer);
+	this->renderer->Render();
 }
 
 void Game::Destroy(){
     logger->Log("Destroying renderer");
-	SDL_DestroyRenderer(renderer);
+	delete renderer;
     logger->Log("Destroying window");
 	SDL_DestroyWindow(window);
     logger->Log("Qutting SDL");
