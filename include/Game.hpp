@@ -15,6 +15,7 @@
 #include "InputManager.hpp"
 #include "Logger.hpp"
 #include "RandomNumberGenerator.hpp"
+#include "Renderers/CB_Renderer.hpp"
 
 
 class EntityManager;
@@ -26,7 +27,8 @@ class Game{
         Game(std::string title);
         ~Game();
         bool IsRunning() const;
-        static SDL_Renderer *renderer;
+        //static SDL_Renderer *renderer;
+        static CB_Renderer *renderer;
         static SDL_Window *window;
         static SDL_Event event;
         static SDL_Rect camera;
