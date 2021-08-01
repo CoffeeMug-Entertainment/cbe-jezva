@@ -107,20 +107,45 @@ namespace CB
 			return std::sqrt((x * x) + (y * y));
 		}
 
-		//TODO fhomolka 04/06/2021 14:33 -> Create these instances
-		static const Vec2 Zero;
-		static const Vec2 One;
-		static const Vec2 Up;
-		static const Vec2 Down;
-		static const Vec2 Left;
-		static const Vec2 Right;
+		float dot (const Vec2& second)
+		{
+			return this->x * second.x + this->y * second.y;
+		}
+
+		float cross (const Vec2& second)
+		{
+			return this->x * second.y - this->y * second.x;
+		}
+
+		Vec2 unit() const
+		{
+			return {(this->x > 0.0f) - (this->x < 0.0f), (this->y > 0.0f) - (this->y < 0.0f)};
+		}
+
+		Vec2 normalized() const
+		{
+			float r = 1 / magnitude();
+			return {this->x * r, this->y * r};
+		}
+
+		Vec2 perpendicular() const
+		{
+			return {-y, x};
+		}
+
+		static const Vec2 ZERO;
+		static const Vec2 ONE;
+		static const Vec2 UP;
+		static const Vec2 DOWN;
+		static const Vec2 LEFT;
+		static const Vec2 RIGHT;
 	};
 
-	//TODO fhomolka 04/06/2021 14:33 ->Put this in a CPP
-	//const Vec2 Vec2::Zero = {0,0};
-
+	inline constexpr Vec2 Vec2::ZERO {0, 0};
+	inline constexpr Vec2 Vec2::ONE {1, 1};
+	inline constexpr Vec2 Vec2::UP {0, -1};
+	inline constexpr Vec2 Vec2::DOWN {0,  1};
+	inline constexpr Vec2 Vec2::LEFT {-1, 0};
+	inline constexpr Vec2 Vec2::RIGHT {1, 0};
 }
-
-
-
 #endif
