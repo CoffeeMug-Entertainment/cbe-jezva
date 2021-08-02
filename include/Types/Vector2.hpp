@@ -1,5 +1,5 @@
-#ifndef CBE_VEC2
-#define CBE_VEC2
+#ifndef CB_VEC2
+#define CB_VEC2
 
 #include <cmath>
 
