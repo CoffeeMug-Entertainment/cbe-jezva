@@ -1,5 +1,5 @@
 #ifndef CB_MATH
-#define CB_MATH value
+#define CB_MATH
 
 #include <cmath>
 
@@ -34,7 +34,5 @@ namespace CB
 		return (x > 0) - (x < 0);
 	}
 }
-
-
 
 #endif
