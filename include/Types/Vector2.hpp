@@ -1,5 +1,5 @@
-#ifndef CBE_VEC2
-#define CBE_VEC2
+#ifndef CB_VEC2
+#define CB_VEC2
 
 #include <cmath>
 
@@ -120,6 +120,8 @@ namespace CB
 		Vec2 unit() const
 		{
 			return {(this->x > 0.0f) - (this->x < 0.0f), (this->y > 0.0f) - (this->y < 0.0f)};
+			//CB_Math.hpp way, essentially the same thing:
+			//return {CB::Sign(this->x), CB::Sign(this->y)};
 		}
 
 		Vec2 normalized() const
@@ -131,6 +133,11 @@ namespace CB
 		Vec2 perpendicular() const
 		{
 			return {-y, x};
+		}
+
+		Vec2 rotated(const float angle) const
+		{
+			return {this->x * cos(angle) - this->y * sin(angle), this->x * sin(angle) + this->y * cos(angle)};
 		}
 
 		static const Vec2 ZERO;
