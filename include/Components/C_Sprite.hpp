@@ -7,7 +7,7 @@
 #include "../Animation.hpp"
 #include "C_Transform.hpp"
 
-class SpriteComponent: public Component {
+class C_Sprite: public Component {
     private:
         C_Transform* transform;
         SDL_Texture* texture;
@@ -24,19 +24,19 @@ class SpriteComponent: public Component {
     public:
         SDL_RendererFlip spriteFlip = SDL_FLIP_NONE;
 
-        SpriteComponent(std::string assetTextureId) {
+        C_Sprite(std::string assetTextureId) {
             this->isAnimated = false;
             this->isFixed = false;
             SetTexture(assetTextureId);
         }
 
-        SpriteComponent(std::string assetTextureId, bool isFixed) {
+        C_Sprite(std::string assetTextureId, bool isFixed) {
             this->isAnimated = false;
             this->isFixed = isFixed;
             SetTexture(assetTextureId);
         }
 
-        SpriteComponent(std::string id, int numFrames, int animationSpeed, bool hasDirections, bool isFixed) {
+        C_Sprite(std::string id, int numFrames, int animationSpeed, bool hasDirections, bool isFixed) {
             this->isAnimated = true;
             this->numFrames = numFrames;
             this->animationSpeed = animationSpeed;
