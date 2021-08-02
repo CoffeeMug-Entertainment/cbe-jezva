@@ -20,6 +20,9 @@ class C_Text: public Component {
 		C_Text(int x, int y, std::string text, std::string fontFamily, const SDL_Color& color);
 		C_Text(CB::Vec2 newPosition, std::string text, std::string fontFamily, const SDL_Color& color);
 
+		//TODO fhomolka 02/08/2021 23:30 -> Constructor that takes in transform, and a "bool follorTransform"
+		//									If it should follow transform, in Update, update own position to that of the transform
+
 		void SetLabelText(std::string text, std::string newfontFamily = "") ;
 
 		void Render() override;
