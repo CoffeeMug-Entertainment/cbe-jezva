@@ -12,7 +12,7 @@ C_Text::C_Text(int x, int y, std::string text, std::string fontFamily, const SDL
 C_Text::C_Text(CB::Vec2 newPosition, std::string text, std::string fontFamily, const SDL_Color& color) {
 
 	this->position.x = newPosition.x;
-	this->position.y = newPosition.x;
+	this->position.y = newPosition.y;
 	this->text = text;
 	this->fontFamily = fontFamily;
 	this->color = color;
