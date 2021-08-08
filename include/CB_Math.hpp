@@ -8,6 +8,9 @@ namespace CB
 
 	static constexpr float fPI = acos(-1.0f);
 	static constexpr double dPI = acos(-1.0);
+
+	static constexpr float fTAU = 2 * fPI;
+	static constexpr double dTAU = 2 * dPI;
 	
 	inline float deg2rad(const float deg)
 	{
