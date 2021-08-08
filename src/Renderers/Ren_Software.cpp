@@ -19,7 +19,8 @@ bool Ren_Software::Initialize(){
 }
 
 void Ren_Software::Render(){
-	SDL_SetRenderDrawColor(renderer, 21, 21, 21, 255);
+	SDL_Color clearColor = this->clearColour.ToSDLColor();
+	SDL_SetRenderDrawColor(renderer, clearColor.r, clearColor.g, clearColor.b, 255);
 	SDL_RenderClear(renderer);
 	
 	//Call manager.render to render entities

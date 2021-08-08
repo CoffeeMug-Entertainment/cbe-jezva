@@ -2,6 +2,7 @@
 #define CB_RENDERER
 
 #include <SDL2/SDL.h>
+#include "Types/Colour.hpp"
 
 class CB_Renderer
 {
@@ -21,6 +22,10 @@ public:
 	virtual void RenderFillRect(SDL_Rect* destinationRectangle){};
 
 	virtual void FreeSurface(SDL_Surface* surface){};
+
+	void SetClearColour(CB::Colour newColour){this->clearColour = newColour;};
+protected:
+	CB::Colour clearColour;
 };
 
 #endif
