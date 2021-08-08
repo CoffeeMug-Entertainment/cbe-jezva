@@ -5,6 +5,8 @@
 #include <SDL2/SDL_pixels.h>
 #endif
 
+#include <algorithm>
+
 namespace CB
 {
 	static const int RGB8_MAX = 255;
@@ -38,10 +40,10 @@ namespace CB
 
 		void FromRGBA8(int r, int g, int b, int a)
 		{
-			this->red = r / RGB8_MAX;
-			this->green = g / RGB8_MAX;
-			this->blue = b /RGB8_MAX;
-			this->alpha = a / RGB8_MAX;
+			this->red =  std::clamp((float)r / RGB8_MAX, 0.0f, 1.0f);
+			this->green = std::clamp((float)g / RGB8_MAX, 0.0f, 1.0f);
+			this->blue = std::clamp((float)b / RGB8_MAX, 0.0f, 1.0f);
+			this->alpha = std::clamp((float)a / RGB8_MAX, 0.0f, 1.0f);
 		}
 
 		//Compatibility stuff
