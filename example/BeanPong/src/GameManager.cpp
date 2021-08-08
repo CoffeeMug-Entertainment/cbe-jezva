@@ -8,7 +8,7 @@
 #include "C_PaddleMover.hpp"
 #include "C_PaddleAI.hpp"
 #include "C_PlayerController.hpp"
-
+#include "Types/Colour.hpp"
 
 GameManager::GameManager(){}
 
@@ -24,7 +24,7 @@ void GameManager::MakeEntities()
 	Entity& ball = Game::entityManager->AddEntity("Ball");
 	ball.AddComponent<C_Transform>(390, 290, 10, 10, 1);
 	C_Transform* ballTransform = ball.GetComponent<C_Transform>();
-	ball.AddComponent<C_SolidColour>(150, 0, 150);
+	ball.AddComponent<C_SolidColour>(CB::Colour{0.58f, 0.0f, 0.58f, 1.0f});
 	ball.AddComponent<C_Collider>("ball", ballTransform->position.x, ballTransform->position.y, ballTransform->width, ballTransform->height);
 	C_BallLogic& ballLogic = ball.AddComponent<C_BallLogic>();
 	ballLogic.gameManager = this;
@@ -32,14 +32,14 @@ void GameManager::MakeEntities()
 	//Paddles
 	Entity& playerPaddle = Game::entityManager->AddEntity("PlayerPaddle");
 	C_Transform& playerTransform = playerPaddle.AddComponent<C_Transform>(10, 250, 10, 100, 1);
-	playerPaddle.AddComponent<C_SolidColour>(0, 150, 150, 255);
+	playerPaddle.AddComponent<C_SolidColour>(CB::Colour{0.0f, 0.58f, 0.58f, 1.0f});
 	playerPaddle.AddComponent<C_Collider>("Paddle", playerTransform.position.x, playerTransform.position.y, playerTransform.width, playerTransform.height);
 	playerPaddle.AddComponent<C_PaddleMover>();
 	playerPaddle.AddComponent<C_PlayerController>();
 
 	Entity& rightPaddle = Game::entityManager->AddEntity("RightPaddle");
 	C_Transform& rightPaddleTransform = rightPaddle.AddComponent<C_Transform>(800 - 10 - 10, 350, 10, 100, 1);
-	rightPaddle.AddComponent<C_SolidColour>(150, 150, 0, 255);
+	rightPaddle.AddComponent<C_SolidColour>(CB::Colour{0.58f, 0.58f, 0.0f, 1.0f});
 	rightPaddle.AddComponent<C_Collider>("Paddle", rightPaddleTransform.position.x, rightPaddleTransform.position.y, rightPaddleTransform.width, rightPaddleTransform.height);
 	rightPaddle.AddComponent<C_PaddleMover>();
 	rightPaddle.AddComponent<C_PaddleAI>();

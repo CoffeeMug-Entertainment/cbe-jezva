@@ -2,6 +2,7 @@
 #include "EntityManager.hpp"
 #include "Renderers/Ren_Software.hpp"
 
+
 //SDL_Renderer* Game::renderer;
 CB_Renderer* Game::renderer;
 SDL_Window* Game::window;
@@ -87,6 +88,8 @@ void Game::Initialize(int width, int height){
 	if(!this->renderer->Initialize()){
 		return;
 	}
+
+	this->renderer->SetClearColour(CB::Colour{0.08f, 0.08f, 0.08f, 1.0f});
 
 	isRunning = true;
 	//return;
