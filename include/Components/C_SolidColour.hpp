@@ -15,6 +15,7 @@ public:
 
 
 	C_SolidColour(int r=255, int b=255, int g=255, int a=255);
+	C_SolidColour(CB::Colour newColour);
 	~C_SolidColour();
 
 	void Initialize() override;

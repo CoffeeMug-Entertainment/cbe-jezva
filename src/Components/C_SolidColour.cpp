@@ -5,6 +5,11 @@ C_SolidColour::C_SolidColour(int r, int b, int g, int a)
 	this->colour.FromRGBA8(r, g, b, a);
 }
 
+C_SolidColour::C_SolidColour(CB::Colour newColour)
+{
+	this->colour = newColour;
+}
+
 C_SolidColour::~C_SolidColour(){}
 
 void C_SolidColour::Initialize()
