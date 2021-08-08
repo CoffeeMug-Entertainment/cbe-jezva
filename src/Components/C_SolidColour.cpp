@@ -2,10 +2,7 @@
 
 C_SolidColour::C_SolidColour(int r, int b, int g, int a)
 {
-	this->colour.r = r;
-	this->colour.g = g;
-	this->colour.b = b;
-	this->colour.a = a;
+	this->colour.FromRGBA8(r, g, b, a);
 }
 
 C_SolidColour::~C_SolidColour(){}
@@ -33,6 +30,6 @@ void C_SolidColour::Update(float deltaTime)
 
 void C_SolidColour::Render()
 {
-	Game::renderer->SetRenderDrawColor(this->colour.r, this->colour.g, this->colour.b, this->colour.a);
+	Game::renderer->SetRenderDrawColor(this->colour.red * 255, this->colour.green * 255, this->colour.blue * 255, this->colour.alpha * 255);
 	Game::renderer->RenderFillRect(&destinationRectangle);
 }

@@ -4,10 +4,12 @@
 #include <SDL2/SDL.h>
 #include "../Component.hpp"
 #include "C_Transform.hpp"
+#include "Types/Colour.hpp"
 
 class C_SolidColour: public Component {
 public:
-	SDL_Color colour;
+	//SDL_Color colour;
+	CB::Colour colour;
 	SDL_Rect destinationRectangle;
 	C_Transform* transform;
 
