@@ -7,7 +7,6 @@
 
 namespace CB
 {
-
 	static const int RGB8_MAX = 255;
 	struct RGBA
 	{
@@ -72,6 +71,9 @@ namespace CB
 		static const RGBA RED;
 		static const RGBA GREEN;
 		static const RGBA BLUE;
+		static const RGBA YELLOW;
+		static const RGBA MAGENTA;
+		static const RGBA CYAN;
 	};
 
 	inline constexpr RGBA RGBA::BLACK{0.0f, 0.0f, 0.0f, 1.0f};
@@ -80,6 +82,9 @@ namespace CB
 	inline constexpr RGBA RGBA::RED{1.0f, 0.0f, 0.0f, 1.0f};
 	inline constexpr RGBA RGBA::GREEN{0.0f, 1.0f, 0.0f, 1.0f};
 	inline constexpr RGBA RGBA::BLUE{0.0f, 0.0f, 1.0f, 1.0f};
+	inline constexpr RGBA RGBA::YELLOW{1.0f, 1.0f, 0.0f, 1.0f};
+	inline constexpr RGBA RGBA::MAGENTA{1.0f, 0.0f, 1.0f, 1.0f};
+	inline constexpr RGBA RGBA::CYAN{0.0f, 1.0f, 1.0f, 1.0f};
 
 	using Colour = RGBA;
 	using Color = RGBA;
