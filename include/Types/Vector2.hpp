@@ -10,6 +10,50 @@ namespace CB
 		float x;
 		float y;
 
+		// Additional vector info
+
+		float magnitude() const
+		{
+			return std::sqrt((x * x) + (y * y));
+		}
+
+		Vec2 unit() const
+		{
+			return {(this->x > 0.0f) - (this->x < 0.0f), (this->y > 0.0f) - (this->y < 0.0f)};
+			//CB_Math.hpp way, essentially the same thing:
+			//return {CB::Sign(this->x), CB::Sign(this->y)};
+		}
+
+		//Operations
+
+		Vec2 normalized() const
+		{
+			float r = 1 / magnitude();
+			return {this->x * r, this->y * r};
+		}
+
+		float dot (const Vec2& second)
+		{
+			return this->x * second.x + this->y * second.y;
+		}
+
+		float cross (const Vec2& second)
+		{
+			return this->x * second.y - this->y * second.x;
+		}
+
+		Vec2 perpendicular() const
+		{
+			return {-y, x};
+		}
+
+		Vec2 rotated(const float angle) const
+		{
+			return {this->x * cos(angle) - this->y * sin(angle), this->x * sin(angle) + this->y * cos(angle)};
+		}
+
+		//Overloads
+
 		// Prefix
 		Vec2 operator-()
 		{
@@ -102,44 +146,7 @@ namespace CB
 			return *this;
 		}
 
-		float magnitude() const
-		{
-			return std::sqrt((x * x) + (y * y));
-		}
-
-		float dot (const Vec2& second)
-		{
-			return this->x * second.x + this->y * second.y;
-		}
-
-		float cross (const Vec2& second)
-		{
-			return this->x * second.y - this->y * second.x;
-		}
-
-		Vec2 unit() const
-		{
-			return {(this->x > 0.0f) - (this->x < 0.0f), (this->y > 0.0f) - (this->y < 0.0f)};
-			//CB_Math.hpp way, essentially the same thing:
-			//return {CB::Sign(this->x), CB::Sign(this->y)};
-		}
-
-		Vec2 normalized() const
-		{
-			float r = 1 / magnitude();
-			return {this->x * r, this->y * r};
-		}
-
-		Vec2 perpendicular() const
-		{
-			return {-y, x};
-		}
-
-		Vec2 rotated(const float angle) const
-		{
-			return {this->x * cos(angle) - this->y * sin(angle), this->x * sin(angle) + this->y * cos(angle)};
-		}
-
+		//Useful pre-definitions
 		static const Vec2 ZERO;
 		static const Vec2 ONE;
 		static const Vec2 UP;
