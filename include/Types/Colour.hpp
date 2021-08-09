@@ -50,7 +50,7 @@ namespace CB
 		#ifdef SDL_h_
 		SDL_Color ToSDLColor()
 		{
-			return SDL_Color{this->red * RGB8_MAX, this->blue * RGB8_MAX, this->green * RGB8_MAX, this->alpha * RGB8_MAX};
+			return SDL_Color{this->red * RGB8_MAX, this->green * RGB8_MAX, this->blue * RGB8_MAX, this->alpha * RGB8_MAX};
 		}
 
 		RGBA& operator=(const SDL_Color& rhs)
