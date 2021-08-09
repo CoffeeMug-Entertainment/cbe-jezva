@@ -47,11 +47,11 @@ void GameManager::MakeEntities()
 
 	//UI
 	Entity& playerScore = Game::entityManager->AddEntity("PlayerScore");
-	playerScore.AddComponent<C_Text>(300, 20, "0", "silkBold", SDL_Color{255, 255, 255, 255});
+	playerScore.AddComponent<C_Text>(300, 20, "0", "silkBold", CB::Colour{1.0f, 1.0f, 1.0f, 1.0f});
 	playerScoreLabel = playerScore.GetComponent<C_Text>(); //fhomolka 06/06/2021 20:19 -> Tried getting it directly from AddComponent, demon possession happened
 
 	Entity& AIScore = Game::entityManager->AddEntity("AIScore");
-	AIScore.AddComponent<C_Text>(450, 20, "0", "silkBold", SDL_Color{255, 255, 255, 255});
+	AIScore.AddComponent<C_Text>(450, 20, "0", "silkBold", CB::Colour{1.0f, 1.0f, 1.0f, 1.0f});
 	aiScoreLabel = AIScore.GetComponent<C_Text>();
 
 
