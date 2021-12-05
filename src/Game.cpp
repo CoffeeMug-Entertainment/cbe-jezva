@@ -1,6 +1,6 @@
 #include "Game.hpp"
 #include "EntityManager.hpp"
-#include "Renderers/Ren_Software.hpp"
+#include "Renderers/Ren_SDL.hpp"
 
 
 //SDL_Renderer* Game::renderer;
@@ -83,7 +83,7 @@ void Game::Initialize(int width, int height){
 		return;
 	}
 
-	this->renderer = new Ren_Software();
+	this->renderer = new Ren_SDL();
 
 	if(!this->renderer->Initialize()){
 		return;

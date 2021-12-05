@@ -1,14 +1,14 @@
-#ifndef CB_REN_SOFTWARE
-#define CB_REN_SOFTWARE
+#ifndef CB_Ren_SDL
+#define CB_Ren_SDL
 
 #include "CB_Renderer.hpp"
 #include <SDL2/SDL.h>
 
-class Ren_Software : public CB_Renderer
+class Ren_SDL : public CB_Renderer
 {
 public:
-	Ren_Software();
-	~Ren_Software();
+	Ren_SDL();
+	~Ren_SDL();
 
 	bool Initialize() override;
 	void Render() override;
