@@ -42,6 +42,7 @@ Tilemap* AssetManager::GetTilemap(std::string tilemapId)
 */
 
 const char* fontsKey = "Fonts";
+const char* texturesKey = "Textures";
 
 void AssetManager::LoadFromAssetsJson(const char* filePath)
 {
@@ -71,5 +72,14 @@ void AssetManager::LoadFromAssetsJson(const char* filePath)
 		newFont.size = f["size"].get<int>();
 
 		this->AddFont(newFont.id, newFont.filePath.c_str(), newFont.size);
+	}
+
+	for(const auto& f : parsedAssetFile[texturesKey])
+	{
+		TextureInfo newTexture;
+		newTexture.id = f["id"].get<std::string>();
+		newTexture.filePath = f["path"].get<std::string>();
+
+		this->AddTexture(newTexture.id, newTexture.filePath.c_str());
 	}
 }

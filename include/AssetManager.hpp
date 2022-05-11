@@ -40,4 +40,9 @@ struct FontInfo {
     int size;
 };
 
+struct TextureInfo {
+    std::string id;
+    std::string filePath;
+};
+
 #endif
