@@ -2,7 +2,7 @@
 #define C_BALL_LOGIC
 
 #include "Component.hpp"
-#include "GameManager.hpp";
+#include "GameManager.hpp"
 #include "Components/C_Transform.hpp"
 //#include "Components/C_RigidBody2D.hpp"
 #include "CB_Math.hpp"
