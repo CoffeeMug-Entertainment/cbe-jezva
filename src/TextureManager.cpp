@@ -6,7 +6,7 @@ SDL_Texture* TextureManager::LoadTexture(const char* fileName){
 
 	if (surface == NULL)
 	{
-		Game::logger->LogError("Unable to load texture " + std::string(fileName));
+		Game::logger->LogError("Unable to load texture " + std::string(fileName) + "\n\t" + std::string(IMG_GetError()));
 		return nullptr;
 	}
 
