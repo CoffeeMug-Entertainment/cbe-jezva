@@ -13,7 +13,7 @@ SDL_Event Game::event;
 Logger* Game::logger;
 RandomNumberGenerator* Game::rng;
 CoffeeBeanConfig Game::config;
-        
+SDL_Rect Game::camera;
 
 Game::Game(std::string title) 
 {
