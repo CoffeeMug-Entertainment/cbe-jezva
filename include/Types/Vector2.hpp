@@ -19,7 +19,7 @@ namespace CB
 
 		Vec2 unit() const
 		{
-			return {(this->x > 0.0f) - (this->x < 0.0f), (this->y > 0.0f) - (this->y < 0.0f)};
+			return {static_cast<float>(this->x > 0.0f) - (this->x < 0.0f), static_cast<float>(this->y > 0.0f) - (this->y < 0.0f)};
 			//CB_Math.hpp way, essentially the same thing:
 			//return {CB::Sign(this->x), CB::Sign(this->y)};
 		}
