@@ -1,12 +1,12 @@
 [submodule "thirdparty/SDL2"]
 	path = thirdparty/SDL2
-	url = git@github.com:libsdl-org/SDL.git
+	url = https://github.com/libsdl-org/SDL.git
 [submodule "thirdparty/SDL2_ttf"]
 	path = thirdparty/SDL2_ttf
-	url = git@github.com:libsdl-org/SDL_ttf.git
+	url = https://github.com/libsdl-org/SDL_ttf.git
 [submodule "thirdparty/Xoshiro"]
 	path = thirdparty/Xoshiro
-	url = git@github.com:fhomolka/Xoshiro-cpp.git
+	url = https://github.com/fhomolka/Xoshiro-cpp.git
 [submodule "thirdparty/json"]
 	path = thirdparty/json
-	url = git@github.com:nlohmann/json.git
+	url = https://github.com/nlohmann/json.git
