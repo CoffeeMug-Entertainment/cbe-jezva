@@ -6,8 +6,8 @@
 namespace CB
 {
 
-	static constexpr float fPI = acos(-1.0f);
-	static constexpr double dPI = acos(-1.0);
+	static constexpr float fPI = 3.14159265358979323846f;
+	static constexpr double dPI = 3.14159265358979323846;
 
 	static constexpr float fTAU = 2 * fPI;
 	static constexpr double dTAU = 2 * dPI;
