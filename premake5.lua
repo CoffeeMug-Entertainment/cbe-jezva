@@ -33,6 +33,7 @@ project "CoffeeBean"
 		includedirs
 		{
 			"thirdparty/SDL2/include",
+			"thirdparty/SDL2_ttf"
 		}
 
      	links
