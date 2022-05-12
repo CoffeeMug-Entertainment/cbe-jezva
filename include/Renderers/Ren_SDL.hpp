@@ -19,6 +19,7 @@ public:
 	void QueryTexture(SDL_Texture* texture, uint32_t* format, int* access, int* w, int* h) override;
 
 	void SetRenderDrawColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a) override;
+	void SetRenderDrawColor(CB::RGBA& newColour) override;
 	void RenderFillRect(SDL_Rect* dstRect) override;
 	void FreeSurface(SDL_Surface* surface) override;
 private:

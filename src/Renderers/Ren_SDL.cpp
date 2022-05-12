@@ -53,6 +53,11 @@ void Ren_SDL::SetRenderDrawColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a){
 	SDL_SetRenderDrawColor(this->renderer, r, g, b, a);
 }
 
+void Ren_SDL::SetRenderDrawColor(CB::RGBA& newColour) {
+	SDL_Color nColour = newColour.ToSDLColor();
+	SDL_SetRenderDrawColor(this->renderer, nColour.r, nColour.g, nColour.b, nColour.a);
+};
+
 void Ren_SDL::RenderFillRect(SDL_Rect* dstRect){
 	SDL_RenderFillRect(this->renderer, dstRect);
 }

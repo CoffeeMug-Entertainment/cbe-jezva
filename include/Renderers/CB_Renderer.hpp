@@ -19,6 +19,7 @@ public:
 	virtual void QueryTexture(SDL_Texture* texture, uint32_t* format, int* access, int* w, int* h){};
 
 	virtual void SetRenderDrawColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a){};
+	virtual void SetRenderDrawColor(CB::RGBA& newColour){};
 	virtual void RenderFillRect(SDL_Rect* destinationRectangle){};
 
 	virtual void FreeSurface(SDL_Surface* surface){};
