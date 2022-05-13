@@ -47,6 +47,7 @@ project "BeanPong"
 
 
 	filter "system:windows"
+		staticruntime "on"
 		includedirs
 		{
 			"../../thirdparty/SDL2/include",
