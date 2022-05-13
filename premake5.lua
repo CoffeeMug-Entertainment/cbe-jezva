@@ -44,3 +44,8 @@ project "CoffeeBean"
      		"SDL2main"
      	}
 
+		defines
+		{
+			"WIN32"
+		}
+
