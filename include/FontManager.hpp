@@ -2,7 +2,7 @@
 #define FONTMANAGER_HPP
 
 #include "Game.hpp"
-#include <SDL2/SDL_ttf.h>
+#include "CB_SDL_ttf.h"
 
 class FontManager {
    public:

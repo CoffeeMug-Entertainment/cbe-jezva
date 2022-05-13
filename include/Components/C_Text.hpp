@@ -2,7 +2,7 @@
 #define C_TEXT
 
 #include "CB_SDL.h"
-#include <SDL2/SDL_ttf.h>
+#include "CB_SDL_ttf.h"
 #include "FontManager.hpp"
 #include "EntityManager.hpp"
 #include "AssetManager.hpp"
