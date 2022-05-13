@@ -46,6 +46,6 @@ project "CoffeeBean"
 
 		defines
 		{
-			"WIN32"
+			"_WIN32"
 		}
 
