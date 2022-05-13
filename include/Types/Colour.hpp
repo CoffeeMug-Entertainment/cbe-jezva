@@ -1,8 +1,12 @@
 #ifndef CB_COLOUR
 #define CB_COLOUR
 
-#ifdef SDL_h_ //TODO fhomolka 08/08/2021 -> Check if SDL defines something else
-#include <SDL2/SDL_pixels.h>
+#ifdef SDL_h_ //TODO fhomolka 08/08/2021 -> Check if SDL defines something else 
+#ifdef _WIN32
+#include "SDL_pixels.h"
+#else 
+#include "SDL2/SDL_pixels.h"
+#endif
 #endif
 
 #include <algorithm>
