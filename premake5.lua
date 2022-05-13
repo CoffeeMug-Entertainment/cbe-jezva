@@ -35,6 +35,7 @@ project "CoffeeBean"
 		includedirs
 		{
 			"thirdparty/SDL2/include",
+			"thirdparty/SDL_image",
 			"thirdparty/SDL2_ttf"
 		}
 
