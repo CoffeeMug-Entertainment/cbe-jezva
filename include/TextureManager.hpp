@@ -2,7 +2,6 @@
 #define TEXTUREMANAGER_H
 
 #include "Game.hpp"
-#include <SDL2/SDL_image.h>
 
 class TextureManager{
 	public:
