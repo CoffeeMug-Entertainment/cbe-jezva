@@ -27,7 +27,8 @@ project "BeanPong"
 		"src",
 		"../../include",
 		"../../thirdparty/json/single_include",
-		"../../thirdparty/Xoshiro/"
+		"../../thirdparty/Xoshiro/",
+		"../../thirdparty/stb"
 	}
 
 	libdirs

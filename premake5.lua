@@ -13,7 +13,8 @@ project "CoffeeBean"
 		--"thirdparty/SDL2/include",
 		--"thirdpartySDL2_ttf",
 		"thirdparty/json/single_include",
-		"thirdparty/Xoshiro/"
+		"thirdparty/Xoshiro/",
+		"thirdparty/stb"
 	}
 
 	files
