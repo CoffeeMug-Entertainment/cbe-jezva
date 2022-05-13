@@ -1,7 +1,7 @@
 #ifndef C_TILE
 #define C_TILE
 
-#include <SDL2/SDL.h>
+#include "CB_SDL.h"
 #include "../EntityManager.hpp"
 #include "../AssetManager.hpp"
 #include "Types/Vector2.hpp"

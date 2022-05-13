@@ -2,7 +2,7 @@
 #define CB_Ren_SDL
 
 #include "CB_Renderer.hpp"
-#include <SDL2/SDL.h>
+#include "CB_SDL.h"
 
 class Ren_SDL : public CB_Renderer
 {

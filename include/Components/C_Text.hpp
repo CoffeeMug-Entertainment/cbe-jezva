@@ -1,7 +1,7 @@
 #ifndef C_TEXT
 #define C_TEXT
 
-#include <SDL2/SDL.h>
+#include "CB_SDL.h"
 #include <SDL2/SDL_ttf.h>
 #include "FontManager.hpp"
 #include "EntityManager.hpp"

@@ -1,7 +1,7 @@
 #ifndef C_SOLID_COLOUR
 #define C_SOLID_COLOUR
 
-#include <SDL2/SDL.h>
+#include "CB_SDL.h"
 #include "../Component.hpp"
 #include "C_Transform.hpp"
 #include "Types/Colour.hpp"

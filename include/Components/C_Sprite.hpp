@@ -1,7 +1,7 @@
 #ifndef C_SPRITE
 #define C_SPRITE
 
-#include <SDL2/SDL.h>
+#include "CB_SDL.h"
 #include "../TextureManager.hpp"
 #include "../AssetManager.hpp"
 #include "C_Transform.hpp"

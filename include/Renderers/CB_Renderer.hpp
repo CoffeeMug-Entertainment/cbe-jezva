@@ -1,7 +1,7 @@
 #ifndef CB_RENDERER
 #define CB_RENDERER
 
-#include <SDL2/SDL.h>
+#include "SDL2/SDL.h"
 #include "Types/Colour.hpp"
 
 class CB_Renderer
