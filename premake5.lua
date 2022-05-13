@@ -32,6 +32,7 @@ project "CoffeeBean"
 	}
 
 	filter "system:windows"
+		staticruntime "on"
 		includedirs
 		{
 			"thirdparty/SDL2/include",
@@ -39,8 +40,14 @@ project "CoffeeBean"
 			"thirdparty/SDL2_ttf"
 		}
 
+		buildoptions
+		{
+			"`sdl2-config --cflags --static-libs`"
+		}
+
      	links
      	{
+			
      		"mingw32",
      		"SDL2main"
      	}

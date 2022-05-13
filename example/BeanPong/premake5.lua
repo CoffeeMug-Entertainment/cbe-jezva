@@ -60,10 +60,9 @@ project "BeanPong"
      		"SDL2main"
      	}
 		
-		linkoptions
+		buildoptions
 		{
 			"`sdl2-config --cflags --static-libs`",
-			"-L/mingw64/lib"
 		}
 		 
 		defines
