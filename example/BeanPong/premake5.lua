@@ -49,7 +49,9 @@ project "BeanPong"
 	filter "system:windows"
 		includedirs
 		{
-			"thirdparty/SDL2/include",
+			"../../thirdparty/SDL2/include",
+			"../../thirdparty/SDL_image",
+			"../../thirdparty/SDL2_ttf"
 		}
 
      	links
@@ -57,6 +59,11 @@ project "BeanPong"
      		"mingw32",
      		"SDL2main"
      	}
+		 
+		defines
+		{
+			"_WIN32"
+		}
 
     filter "configurations:Debug"
         runtime "Debug"
