@@ -28,7 +28,8 @@ project "BeanPong"
 		"../../include",
 		"../../thirdparty/json/single_include",
 		"../../thirdparty/Xoshiro/",
-		"../../thirdparty/stb"
+		"../../thirdparty/stb",
+		"../../thirdparty/sdl_stb_font"
 	}
 
 	libdirs

@@ -14,7 +14,8 @@ project "CoffeeBean"
 		--"thirdpartySDL2_ttf",
 		"thirdparty/json/single_include",
 		"thirdparty/Xoshiro/",
-		"thirdparty/stb"
+		"thirdparty/stb",
+		"thirdparty/sdl_stb_font"
 	}
 
 	files
@@ -44,4 +45,12 @@ project "CoffeeBean"
      		"mingw32",
      		"SDL2main"
      	}
+
+	filter "configurations:Debug"
+		 runtime "Debug"
+		 symbols "on"
+
+	 filter "configurations:Release"
+		 runtime "Release"
+		 optimize "on"
 
