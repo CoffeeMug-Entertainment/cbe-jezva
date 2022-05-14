@@ -65,3 +65,7 @@ void Ren_SDL::RenderFillRect(SDL_Rect* dstRect){
 void Ren_SDL::FreeSurface(SDL_Surface* surface){
 	SDL_FreeSurface(surface);
 }
+
+SDL_Renderer* Ren_SDL::Renderer() const {
+	return this->renderer;
+}
