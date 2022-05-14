@@ -2,7 +2,6 @@
 #define C_TEXT
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
 #include "FontManager.hpp"
 #include "EntityManager.hpp"
 #include "AssetManager.hpp"
@@ -12,12 +11,11 @@
 
 class C_Text: public Component {
 	private:
-		SDL_Rect position;
+		CB::Vec2 position;
 		std::string text;
 		std::string fontFamily;
-		//SDL_Color color;
 		CB::Colour colour;
-		SDL_Texture* texture;
+		sdl_stb_font_cache* font_cache;
 	public:
 		C_Text(int x, int y, std::string text, std::string fontFamily, const CB::Colour& colour);
 		C_Text(CB::Vec2 newPosition, std::string text, std::string fontFamily, const CB::Colour& colour);
