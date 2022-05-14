@@ -12,10 +12,12 @@
 class C_Text: public Component {
 	private:
 		CB::Vec2 position;
+		CB::Vec2 size;
 		std::string text;
 		std::string fontFamily;
 		CB::Colour colour;
 		sdl_stb_font_cache* font_cache;
+		SDL_Texture* texture;
 	public:
 		C_Text(int x, int y, std::string text, std::string fontFamily, const CB::Colour& colour);
 		C_Text(CB::Vec2 newPosition, std::string text, std::string fontFamily, const CB::Colour& colour);

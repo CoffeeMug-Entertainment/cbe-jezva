@@ -18,6 +18,7 @@ C_Text::C_Text(CB::Vec2 newPosition, std::string text, std::string fontFamily, c
 	SetLabelText(text, fontFamily);
 }
 
+#include "Renderers/Ren_SDL.hpp"
 void C_Text::SetLabelText(std::string text, std::string newfontFamily) {
 
 	if (newfontFamily != "")
@@ -27,8 +28,16 @@ void C_Text::SetLabelText(std::string text, std::string newfontFamily) {
 	this->text = text;
 
 	this->font_cache = Game::assetManager->GetFont(fontFamily);
+
+	sdl_stb_prerendered_text* prt;
+	prt->mRenderer =  static_cast<Ren_SDL*>(Game::renderer)->Renderer();
+	int x, y;
+	this->texture = font_cache->renderTextToTexture(this->text, &x, &y);
+
+	this->size.x = x;
+	this->size.y = y;
 }
 
 void C_Text::Render() {
-	FontManager::Draw(this->font_cache, this->position, this->text);
+	FontManager::Draw(this->texture, this->position, this->size);
 }
