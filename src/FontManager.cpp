@@ -29,3 +29,12 @@ sdl_stb_font_cache* FontManager::LoadFont(const char* fileName, int fontSize){
 void FontManager::Draw(sdl_stb_font_cache* font_cache, CB::Vec2 position, std::string text){
     font_cache->drawText(static_cast<int>(position.x), static_cast<int>(position.y), text);
 }
+
+void FontManager::Draw(SDL_Texture* texture, CB::Vec2 position, CB::Vec2 size) {
+    SDL_Rect texture_rect;
+    texture_rect.x = static_cast<int>(position.x);
+    texture_rect.y = static_cast<int>(position.y);
+    texture_rect.w = static_cast<int>(size.x);
+    texture_rect.h = static_cast<int>(size.y);
+    Game::renderer->RenderCopy(texture, texture_rect);
+    }
