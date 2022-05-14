@@ -29,7 +29,7 @@ void C_Text::SetLabelText(std::string text, std::string newfontFamily) {
 
 	this->font_cache = Game::assetManager->GetFont(fontFamily);
 
-	sdl_stb_prerendered_text* prt;
+	sdl_stb_prerendered_text* prt = new sdl_stb_prerendered_text();
 	prt->mRenderer =  static_cast<Ren_SDL*>(Game::renderer)->Renderer();
 	int x, y;
 	this->texture = font_cache->renderTextToTexture(this->text, &x, &y);
