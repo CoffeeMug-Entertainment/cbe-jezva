@@ -42,6 +42,14 @@ Tilemap* AssetManager::GetTilemap(std::string tilemapId)
 }
 */
 
+void AssetManager::AddAudio(std::string audioId, const char* filePath) {
+	audio.emplace(audioId, AudioManager::LoadWav(filePath));
+}
+
+AudioData* AssetManager::GetAudio(std::string audioId) {
+	return audio[audioId];
+}
+
 const char* fontsKey = "Fonts";
 const char* texturesKey = "Textures";
 
