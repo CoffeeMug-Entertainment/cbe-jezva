@@ -22,6 +22,8 @@ public:
 	void SetRenderDrawColor(CB::RGBA& newColour) override;
 	void RenderFillRect(SDL_Rect* dstRect) override;
 	void FreeSurface(SDL_Surface* surface) override;
+
+	SDL_Renderer* Renderer() const;
 private:
 	SDL_Renderer *renderer;
 

@@ -1,5 +1,6 @@
 #include "AssetManager.hpp"
 #include "Game.hpp"
+#include "FontManager.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -21,7 +22,7 @@ void AssetManager::AddFont(std::string fontId, const char* filePath, int fontSiz
 	fonts.emplace(fontId, FontManager::LoadFont(filePath, fontSize));
 }
 
-TTF_Font* AssetManager::GetFont(std::string fontId){
+sdl_stb_font_cache* AssetManager::GetFont(std::string fontId){
 	return fonts[fontId];
 }
 

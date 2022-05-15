@@ -1,15 +1,15 @@
 [submodule "thirdparty/SDL2"]
 	path = thirdparty/SDL2
 	url = https://github.com/libsdl-org/SDL.git
-[submodule "thirdparty/SDL2_ttf"]
-	path = thirdparty/SDL2_ttf
-	url = https://github.com/libsdl-org/SDL_ttf.git
 [submodule "thirdparty/Xoshiro"]
 	path = thirdparty/Xoshiro
 	url = https://github.com/fhomolka/Xoshiro-cpp.git
 [submodule "thirdparty/json"]
 	path = thirdparty/json
 	url = https://github.com/nlohmann/json.git
-[submodule "thirdparty/SDL_image"]
-	path = thirdparty/SDL_image
-	url = https://github.com/libsdl-org/SDL_image.git
+[submodule "thirdparty/stb"]
+	path = thirdparty/stb
+	url = https://github.com/nothings/stb.git
+[submodule "thirdparty/sdl_stb_font"]
+	path = thirdparty/sdl_stb_font
+	url = https://github.com/SnapperTT/sdl_stb_font.git

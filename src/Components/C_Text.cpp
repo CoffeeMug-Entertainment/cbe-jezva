@@ -11,28 +11,33 @@ C_Text::C_Text(int x, int y, std::string text, std::string fontFamily, const CB:
 
 C_Text::C_Text(CB::Vec2 newPosition, std::string text, std::string fontFamily, const CB::Colour& colour) {
 
-	this->position.x = newPosition.x;
-	this->position.y = newPosition.y;
+	this->position = newPosition;
 	this->text = text;
 	this->fontFamily = fontFamily;
 	this->colour = colour;
 	SetLabelText(text, fontFamily);
 }
 
+#include "Renderers/Ren_SDL.hpp"
 void C_Text::SetLabelText(std::string text, std::string newfontFamily) {
 
 	if (newfontFamily != "")
 	{
 		this->fontFamily = newfontFamily;
 	}
+	this->text = text;
 
-	auto testFont = Game::assetManager->GetFont(fontFamily);
-	SDL_Surface* surface = TTF_RenderText_Blended(testFont, text.c_str(), this->colour.ToSDLColor());
-	texture = Game::renderer->CreateTextureFromSurface(surface);
-	Game::renderer->FreeSurface(surface);
-	Game::renderer->QueryTexture(texture, NULL, NULL, &position.w, &position.h);
+	this->font_cache = Game::assetManager->GetFont(fontFamily);
+
+	sdl_stb_prerendered_text* prt = new sdl_stb_prerendered_text();
+	prt->mRenderer =  static_cast<Ren_SDL*>(Game::renderer)->Renderer();
+	int x, y;
+	this->texture = font_cache->renderTextToTexture(this->text, &x, &y);
+
+	this->size.x = x;
+	this->size.y = y;
 }
 
 void C_Text::Render() {
-	FontManager::Draw(texture, position);
+	FontManager::Draw(this->texture, this->position, this->size);
 }

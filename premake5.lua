@@ -13,7 +13,9 @@ project "CoffeeBean"
 		--"thirdparty/SDL2/include",
 		--"thirdpartySDL2_ttf",
 		"thirdparty/json/single_include",
-		"thirdparty/Xoshiro/"
+		"thirdparty/Xoshiro/",
+		"thirdparty/stb",
+		"thirdparty/sdl_stb_font"
 	}
 
 	files
@@ -25,8 +27,6 @@ project "CoffeeBean"
 	links
 	{
 		"SDL2",
-		"SDL2_image",
-		"SDL2_ttf",
 		"SDL2_mixer"
 
 	}
@@ -36,8 +36,6 @@ project "CoffeeBean"
 		includedirs
 		{
 			"thirdparty/SDL2/include",
-			"thirdparty/SDL_image",
-			"thirdparty/SDL2_ttf"
 		}
 
 		buildoptions
@@ -56,4 +54,12 @@ project "CoffeeBean"
 		{
 			"_WIN32"
 		}
+		
+	filter "configurations:Debug"
+		 runtime "Debug"
+		 symbols "on"
+
+	 filter "configurations:Release"
+		 runtime "Release"
+		 optimize "on"
 

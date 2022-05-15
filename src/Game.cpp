@@ -62,12 +62,6 @@ void Game::Initialize(int width, int height){
 		return;
 	}
 
-	logger->Log("Initializing SDL_TTF");
-	if(TTF_Init() != 0){
-        logger->LogError("Error Initializing SDL_TTF");
-		return;
-	}
-
 	logger->Log("Creating an SDL Window!");
 	window = SDL_CreateWindow(
 			this->config.title.c_str(), 

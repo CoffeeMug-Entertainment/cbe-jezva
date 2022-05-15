@@ -27,7 +27,9 @@ project "BeanPong"
 		"src",
 		"../../include",
 		"../../thirdparty/json/single_include",
-		"../../thirdparty/Xoshiro/"
+		"../../thirdparty/Xoshiro/",
+		"../../thirdparty/stb",
+		"../../thirdparty/sdl_stb_font"
 	}
 
 	libdirs
@@ -39,8 +41,6 @@ project "BeanPong"
 	{
 		"CoffeeBean",
 		"SDL2",
-		"SDL2_image",
-		"SDL2_ttf",
 		"SDL2_mixer"
 
 	}
