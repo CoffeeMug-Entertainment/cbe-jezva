@@ -48,4 +48,9 @@ struct TextureInfo {
     std::string filePath;
 };
 
+struct AudioInfo {
+    std::string id;
+    std::string filePath;
+};
+
 #endif

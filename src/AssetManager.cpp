@@ -52,6 +52,7 @@ AudioData* AssetManager::GetAudio(std::string audioId) {
 
 const char* fontsKey = "Fonts";
 const char* texturesKey = "Textures";
+const char* audioKey = "Audio";
 
 void AssetManager::LoadFromAssetsJson(const char* filePath)
 {
@@ -90,5 +91,14 @@ void AssetManager::LoadFromAssetsJson(const char* filePath)
 		newTexture.filePath = f["path"].get<std::string>();
 
 		this->AddTexture(newTexture.id, newTexture.filePath.c_str());
+	}
+
+	for(const auto& f : parsedAssetFile[audioKey])
+	{
+		AudioInfo newAudio;
+		newAudio.id = f["id"].get<std::string>();
+		newAudio.filePath = f["path"].get<std::string>();
+
+		this->AddAudio(newAudio.id, newAudio.filePath.c_str());
 	}
 }
