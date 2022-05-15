@@ -14,6 +14,7 @@ Logger* Game::logger;
 RandomNumberGenerator* Game::rng;
 CoffeeBeanConfig Game::config;
 SDL_Rect Game::camera;
+SDL_AudioDeviceID Game::audioDevice;
 
 Game::Game(std::string title) 
 {
@@ -84,6 +85,21 @@ void Game::Initialize(int width, int height){
 	}
 
 	this->renderer->SetClearColour(CB::Colour{0.08f, 0.08f, 0.08f, 1.0f});
+
+	SDL_zero(desiredAudioSpec);
+	desiredAudioSpec.freq = 48000;
+	desiredAudioSpec.format = AUDIO_F32;
+	desiredAudioSpec.channels = 2;
+	desiredAudioSpec.samples = 4096;
+	desiredAudioSpec.callback = NULL;
+	this->audioDevice = SDL_OpenAudioDevice(NULL, SDL_FALSE, &desiredAudioSpec, NULL, 0);
+
+	if (audioDevice == 0)
+	{
+		logger->LogError("Failed to get audio device: " + std::string(SDL_GetError()));
+		return;
+	}
+	
 
 	isRunning = true;
 	//return;
