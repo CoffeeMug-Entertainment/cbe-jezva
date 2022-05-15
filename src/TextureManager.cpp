@@ -8,7 +8,7 @@ SDL_Texture* TextureManager::LoadTexture(const char* fileName){
 	//TODO(fhomolka): Get some of the data from the coder, like the image format.
 	SDL_Surface* surface;
 	int img_width, img_height, img_comps;
-	u_char* img_data = stbi_load(fileName, &img_width, &img_height, &img_comps, STBI_rgb_alpha);
+	unsigned char* img_data = stbi_load(fileName, &img_width, &img_height, &img_comps, STBI_rgb_alpha);
 
 	if (img_data == NULL)
 	{
