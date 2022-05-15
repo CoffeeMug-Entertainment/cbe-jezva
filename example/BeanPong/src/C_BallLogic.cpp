@@ -2,6 +2,8 @@
 #include "Components/C_Collider.hpp"
 #include "CB_Math.hpp"
 #include <cmath>
+#include "AssetManager.hpp"
+
 C_BallLogic::C_BallLogic(){}
 
 C_BallLogic::~C_BallLogic(){}
@@ -21,11 +23,13 @@ void C_BallLogic::Update(float deltaTime)
 	{
 		//ballRigidBody->velocity.y = std::abs(ballRigidBody->velocity.y);
 		ballTransform->velocity.y = std::abs(ballTransform->velocity.y);
+		AudioManager::PlayWav(Game::assetManager->GetAudio("bounce"));
 	}
 	else if (this->ballTransform->position.y + this->ballTransform->height >= 599)
 	{
 		//ballRigidBody->velocity.y = -std::abs(ballRigidBody->velocity.y);
 		ballTransform->velocity.y = -std::abs(ballTransform->velocity.y);
+		AudioManager::PlayWav(Game::assetManager->GetAudio("bounce"));
 	}
 
 	if (this->ballTransform->position.x <= 1)
@@ -61,6 +65,8 @@ void C_BallLogic::OnCollisionReported(Entity* otherEntity)
 		this->currentSpeed += this->accel;
 		//ballRigidBody->velocity.y = verticalAngle * this->currentSpeed / 2;
 		ballTransform->velocity.y = verticalAngle * this->currentSpeed / 2;
+
+		AudioManager::PlayWav(Game::assetManager->GetAudio("bounce"));
 		return;
 	}
 

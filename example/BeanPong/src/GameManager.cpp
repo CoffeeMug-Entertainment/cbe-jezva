@@ -71,15 +71,16 @@ void GameManager::PointScored(int playerId)
 			Game::logger->Log("Player Scored!");
 			this->playerScore += 1;
 			this->playerScoreLabel->SetLabelText(std::to_string(playerScore));
+			AudioManager::PlayWav(Game::assetManager->GetAudio("player_score"));
 			break;
 		case 1:
 			Game::logger->Log("AI Scored!");
 			this->aiScore += 1;
 			this->aiScoreLabel->SetLabelText(std::to_string(aiScore));
+			AudioManager::PlayWav(Game::assetManager->GetAudio("ai_score"));
 			break;
 		default:
 			Game::logger->Log("The heck?");
 			break;
 	}
-	
 }
