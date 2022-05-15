@@ -27,8 +27,6 @@ project "CoffeeBean"
 	links
 	{
 		"SDL2",
-		"SDL2_image",
-		"SDL2_ttf",
 		"SDL2_mixer"
 
 	}
@@ -37,7 +35,6 @@ project "CoffeeBean"
 		includedirs
 		{
 			"thirdparty/SDL2/include",
-			"thirdparty/SDL2_ttf"
 		}
 
      	links
