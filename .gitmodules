@@ -1,9 +1,6 @@
 [submodule "thirdparty/SDL2"]
 	path = thirdparty/SDL2
 	url = https://github.com/libsdl-org/SDL.git
-[submodule "thirdparty/SDL2_ttf"]
-	path = thirdparty/SDL2_ttf
-	url = https://github.com/libsdl-org/SDL_ttf.git
 [submodule "thirdparty/Xoshiro"]
 	path = thirdparty/Xoshiro
 	url = https://github.com/fhomolka/Xoshiro-cpp.git
