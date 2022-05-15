@@ -41,8 +41,6 @@ project "BeanPong"
 	{
 		"CoffeeBean",
 		"SDL2",
-		"SDL2_mixer"
-
 	}
 
 
@@ -51,8 +49,6 @@ project "BeanPong"
 		includedirs
 		{
 			"../../thirdparty/SDL2/include",
-			"../../thirdparty/SDL_image",
-			"../../thirdparty/SDL2_ttf"
 		}
 
      	links

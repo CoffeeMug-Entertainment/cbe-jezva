@@ -27,8 +27,6 @@ project "CoffeeBean"
 	links
 	{
 		"SDL2",
-		"SDL2_mixer"
-
 	}
 
 	filter "system:windows"
