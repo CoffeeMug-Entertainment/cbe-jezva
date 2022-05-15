@@ -38,7 +38,16 @@ project "CoffeeBean"
 
 		buildoptions
 		{
-			"`sdl2-config --cflags --static-libs`"
+			"`sdl2-config --cflags`"
+		}
+
+		linkoptions
+		{
+			"-static-libstdc++",
+			"-static-libgcc",
+			"-Wl,-Bstatic",
+			"`sdl2-config --static-libs`",
+			"-Wl,-Bdynamic",
 		}
 
      	links
