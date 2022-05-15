@@ -10,19 +10,22 @@
 
 sdl_stb_font_cache* FontManager::LoadFont(const char* fileName, int fontSize){
 
-    std::ifstream fontFile(fileName);
-    std::ostringstream ss;
-    std::string fontData;
+    std::ifstream fontFile(fileName, std::ios::in | std::ios::binary);
+    sttfont_memory font_mem;
+    fontFile.seekg(0, std::ios::end);
+    size_t fontFileLength = fontFile.tellg();
+    fontFile.seekg(std::ios::beg);
+    font_mem.alloc(fontFileLength);
 
-    ss << fontFile.rdbuf();
-    fontData = ss.str();
+    fontFile.read(font_mem.data, fontFileLength);
 
     sdl_stb_font_cache* font_cache = new sdl_stb_font_cache();
     font_cache->faceSize = fontSize;
-    font_cache->loadFont(fontData.c_str());
+    font_cache->loadFontManaged(font_mem);
     SDL_Renderer* ren = static_cast<Ren_SDL*>(Game::renderer)->Renderer();
     font_cache->bindRenderer(ren);
 
+    fontFile.close();
     return font_cache;
 }
 
