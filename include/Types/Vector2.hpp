@@ -49,7 +49,7 @@ namespace CB
 
 		Vec2 rotated(const float angle) const
 		{
-			return {this->x * cos(angle) - this->y * sin(angle), this->x * sin(angle) + this->y * cos(angle)};
+			return {static_cast<float>(this->x * cos(angle) - this->y * sin(angle)), static_cast<float>(this->x * sin(angle) + this->y * cos(angle))};
 		}
 
 		//Overloads
