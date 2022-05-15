@@ -2,7 +2,6 @@
 #define GAME_HPP
 
 #include "CB_SDL.h"
-#include "CB_SDL_ttf.h"
 //TODO: Bundle SDL with code, do not depend on users installation
 //#include "SDL.h"
 //#include "SDL_ttf.h"
