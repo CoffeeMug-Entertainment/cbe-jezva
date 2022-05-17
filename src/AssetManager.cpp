@@ -52,7 +52,7 @@ Audio* AssetManager::GetSFX(std::string sfxId) {
 
 const char* fontsKey = "Fonts";
 const char* texturesKey = "Textures";
-const char* audioKey = "SFX";
+const char* sfxKey = "SFX";
 
 void AssetManager::LoadFromAssetsJson(const char* filePath)
 {
@@ -93,7 +93,7 @@ void AssetManager::LoadFromAssetsJson(const char* filePath)
 		this->AddTexture(newTexture.id, newTexture.filePath.c_str());
 	}
 
-	for(const auto& f : parsedAssetFile[audioKey])
+	for(const auto& f : parsedAssetFile[sfxKey])
 	{
 		AudioInfo newAudio;
 		newAudio.id = f["id"].get<std::string>();
