@@ -42,17 +42,17 @@ Tilemap* AssetManager::GetTilemap(std::string tilemapId)
 }
 */
 
-void AssetManager::AddAudio(std::string audioId, const char* filePath) {
+void AssetManager::AddSFX(std::string audioId, const char* filePath) {
 	audio.emplace(audioId, AudioManager::LoadWav(filePath));
 }
 
-Audio* AssetManager::GetAudio(std::string audioId) {
+Audio* AssetManager::GetSFX(std::string audioId) {
 	return audio[audioId];
 }
 
 const char* fontsKey = "Fonts";
 const char* texturesKey = "Textures";
-const char* audioKey = "Audio";
+const char* audioKey = "SFX";
 
 void AssetManager::LoadFromAssetsJson(const char* filePath)
 {
@@ -99,6 +99,6 @@ void AssetManager::LoadFromAssetsJson(const char* filePath)
 		newAudio.id = f["id"].get<std::string>();
 		newAudio.filePath = f["path"].get<std::string>();
 
-		this->AddAudio(newAudio.id, newAudio.filePath.c_str());
+		this->AddSFX(newAudio.id, newAudio.filePath.c_str());
 	}
 }
