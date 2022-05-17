@@ -7,7 +7,7 @@
 class AudioManager
 {
     public:
-    static Audio* LoadWav(const char* fileName);
+    static Audio* LoadWav(const char* fileName, bool loop = false);
     static void PlayWav(Audio* audioData, float volume = 1.0f);
 
 };

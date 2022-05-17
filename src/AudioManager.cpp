@@ -2,8 +2,10 @@
 #include "Game.hpp"
 #include <algorithm>
 
-Audio* AudioManager::LoadWav(const char* fileName) {
-    Audio* newAudio = createAudio(fileName, 0, SDL_MIX_MAXVOLUME);
+Audio* AudioManager::LoadWav(const char* fileName, bool loop) {
+
+    int compatLoopBool = loop ? 1 : 0;
+    Audio* newAudio = createAudio(fileName, compatLoopBool, SDL_MIX_MAXVOLUME);
 
     if (newAudio == NULL) {
         Game::logger->LogError("Failed to load audio file: " + std::string(SDL_GetError()));
