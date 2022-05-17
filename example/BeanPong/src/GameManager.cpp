@@ -54,7 +54,7 @@ void GameManager::MakeEntities()
 	AIScore.AddComponent<C_Text>(450, 20, "0", "silkBold", CB::Colour{1.0f, 1.0f, 1.0f, 1.0f});
 	aiScoreLabel = AIScore.GetComponent<C_Text>();
 
-
+	AudioManager::PlayWav(Game::assetManager->GetMusic("relax"));
 }
 
 void GameManager::SetGame()

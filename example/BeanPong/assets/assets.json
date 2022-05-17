@@ -21,5 +21,12 @@
 			"id": "ai_score",
 			"path": "./assets/sfx/ai_score.wav"
 		}
+	],
+	"Music":
+	[
+		{
+			"id": "relax",
+			"path": "./assets/music/StudyandRelax.wav"
+		}
 	]
 } 
