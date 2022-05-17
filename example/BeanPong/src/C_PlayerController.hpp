@@ -6,6 +6,9 @@
 
 class C_PlayerController : public Component
 {
+	/* PlayerController Component
+	* Not much useful here, check the cpp.
+	*/
 	public:
 		C_PlayerController();
 		~C_PlayerController();

@@ -27,6 +27,5 @@ void C_PaddleMover::Update(float deltaTime) {
 }
 
 void C_PaddleMover::SetMoveDir(int dir) {
-
 	this->movementDir = std::clamp<int>(dir, -1, 1);
 }

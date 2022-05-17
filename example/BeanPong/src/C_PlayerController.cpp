@@ -7,9 +7,13 @@ C_PlayerController::C_PlayerController(){}
 
 C_PlayerController::~C_PlayerController(){}
 
-void C_PlayerController::Initialize()
-{
+void C_PlayerController::Initialize() {
 	paddleMover = owner->GetComponent<C_PaddleMover>();
+	/*
+	* Registering the key into the input manager let's us check whether a key is pressed by checking the ID we registered
+	* InputManager does not memorise who gave it the ID, so you could check whether a button is pressed from another class
+	* (IF you're sure that key exists, that is)
+	*/
 	Game::inputManager->RegisterKey(paddleUpKeyCode, "w");
 	Game::inputManager->RegisterKey(paddleDownKeyCode, "s");
 }

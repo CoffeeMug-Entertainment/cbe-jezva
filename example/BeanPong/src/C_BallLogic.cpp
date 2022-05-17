@@ -11,6 +11,13 @@ C_BallLogic::~C_BallLogic(){}
 void C_BallLogic::Initialize()
 {
 	this->ballTransform = owner->GetComponent<C_Transform>();
+	/*
+	* Indeed, you can register methods/functions to entities Collider component
+	* So, any time your Collider component is told they're colliding, it will call your methods.
+	* Yes, multiple - the methods are kept in a vector
+	* If you're binding methods, use the FBIND() macro
+	* BEWARE: There's currently no ways to UNBIND methods/functions when bound, so generally stick binds within the entity
+	*/
 	this->owner->GetComponent<C_Collider>()->RegisterFunc(FBind(&C_BallLogic::OnCollisionReported));
 	//his->ballRigidBody = this->owner->GetComponent<C_RigidBody2D>();
 
@@ -50,12 +57,16 @@ void C_BallLogic::Update(float deltaTime)
 
 void C_BallLogic::OnCollisionReported(Entity* otherEntity) 
 {
-
+	/*
+	* Here lies an ugly truth: No automatic physics handling
+	* You're going to have to manage your own physics.
+	* I am planning on implementing a proper physics engine, like Box2D
+	* but until I do, have fun writing your own.
+	*/
 	C_Transform *otherTransform = otherEntity->GetComponent<C_Transform>();
 
 	if (otherEntity->GetComponent<C_Collider>()->colliderTag == "Paddle")
 	{
-		Game::logger->Log("Collided with a paddle!");
 		//ballRigidBody->velocity.x += this->accel * CB::Sign(ballRigidBody->velocity.x);
 		//ballRigidBody->velocity.x = -ballRigidBody->velocity.x;
 

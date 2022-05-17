@@ -7,6 +7,9 @@
 
 class C_PaddleAI : public Component
 {
+	/* PaddleAI Component
+	* A pretty dumb ai, that just tracks the ball's center, and then tries to move towards it
+	*/
 	public:
 		C_PaddleAI();
 		~C_PaddleAI();

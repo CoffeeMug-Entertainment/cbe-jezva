@@ -12,6 +12,10 @@ C_PaddleAI::~C_PaddleAI(){}
 void C_PaddleAI::Initialize()
 {
 	this->paddleTransform = owner->GetComponent<C_Transform>();
+	/*
+	* You can ask EntityManager for a pointer to an entity.
+	* BEWARE: The entity might not exist, check for nullptr.
+	*/
 	Entity *ballEntity = Game::entityManager->GetEntityByName("Ball");
 	this->ballTransform = ballEntity->GetComponent<C_Transform>();
 	this->paddleMover = this->owner->GetComponent<C_PaddleMover>();

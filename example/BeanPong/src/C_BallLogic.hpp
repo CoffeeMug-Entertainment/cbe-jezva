@@ -11,6 +11,10 @@ class GameManager;
 
 class C_BallLogic : public Component
 {
+	/*
+	* BallLogic Component
+	* This should've probably been couple of components, like in the case of paddles, but eh.
+	*/
 	public:
 		C_BallLogic();
 		~C_BallLogic();
