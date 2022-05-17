@@ -46,7 +46,7 @@ void AssetManager::AddAudio(std::string audioId, const char* filePath) {
 	audio.emplace(audioId, AudioManager::LoadWav(filePath));
 }
 
-AudioData* AssetManager::GetAudio(std::string audioId) {
+Audio* AssetManager::GetAudio(std::string audioId) {
 	return audio[audioId];
 }
 

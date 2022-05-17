@@ -2,21 +2,13 @@
 #define AUDIOMANAGER_HPP
 
 #include "SDL2/SDL_audio.h"
-
-struct AudioData
-{
-    Uint8* wavBuf;
-    Uint32 wavLen;
-    SDL_AudioSpec wavSpec;
-    SDL_AudioDeviceID wavDevice;
-    SDL_AudioSpec recievedSpec;
-};
+#include "audio.h"
 
 class AudioManager
 {
     public:
-    static AudioData* LoadWav(const char* fileName);
-    static void PlayWav(AudioData* audioData);
+    static Audio* LoadWav(const char* fileName);
+    static void PlayWav(Audio* audioData, float volume = 1.0f);
 
 };
 
