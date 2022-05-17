@@ -50,9 +50,18 @@ Audio* AssetManager::GetSFX(std::string sfxId) {
 	return sfx[sfxId];
 }
 
+void AssetManager::AddMusic(std::string musicId, const char* filePath){
+	music.emplace(musicId, AudioManager::LoadWav(filePath, true));
+}
+
+Audio* AssetManager::GetMusic(std::string musicId){
+	return music[musicId];
+}
+
 const char* fontsKey = "Fonts";
 const char* texturesKey = "Textures";
 const char* sfxKey = "SFX";
+const char* musicKey = "Music";
 
 void AssetManager::LoadFromAssetsJson(const char* filePath)
 {
@@ -100,5 +109,14 @@ void AssetManager::LoadFromAssetsJson(const char* filePath)
 		newSFX.filePath = f["path"].get<std::string>();
 
 		this->AddSFX(newSFX.id, newSFX.filePath.c_str());
+	}
+
+	for(const auto& f : parsedAssetFile[musicKey])
+	{
+		AudioInfo newMusic;
+		newMusic.id = f["id"].get<std::string>();
+		newMusic.filePath = f["path"].get<std::string>();
+
+		this->AddMusic(newMusic.id, newMusic.filePath.c_str());
 	}
 }
