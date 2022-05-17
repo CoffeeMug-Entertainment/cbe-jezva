@@ -15,6 +15,9 @@ void AssetManager::AddTexture(std::string textureId, const char* filePath) {
 }
 
 SDL_Texture* AssetManager::GetTexture(std::string textureId) {
+	auto iter = this->textures.find(textureId);
+	if (iter == textures.end()) return nullptr;
+
 	return textures[textureId];
 }
 
@@ -23,9 +26,11 @@ void AssetManager::AddFont(std::string fontId, const char* filePath, int fontSiz
 }
 
 sdl_stb_font_cache* AssetManager::GetFont(std::string fontId){
+	auto iter = this->fonts.find(fontId);
+	if (iter == fonts.end()) return nullptr;
+
 	return fonts[fontId];
 }
-
 
 void AssetManager::AddTilemap(std::string textureId, std::string tilemapId, int tileSize, int margin)
 {
@@ -33,17 +38,21 @@ void AssetManager::AddTilemap(std::string textureId, std::string tilemapId, int 
 	tilemaps.emplace(tilemapId, newTilemap);
 }
 
-CB::Tilemap* AssetManager::GetTilemap(std::string tilemapId)
-{
+CB::Tilemap* AssetManager::GetTilemap(std::string tilemapId) {
+	auto iter = this->tilemaps.find(tilemapId);
+	if (iter == tilemaps.end()) return nullptr;
+
 	return this->tilemaps[tilemapId];
 }
-
 
 void AssetManager::AddSFX(std::string sfxId, const char* filePath) {
 	sfx.emplace(sfxId, AudioManager::LoadWav(filePath));
 }
 
 Audio* AssetManager::GetSFX(std::string sfxId) {
+	auto iter = this->sfx.find(sfxId);
+	if (iter == sfx.end()) return nullptr;
+
 	return sfx[sfxId];
 }
 
@@ -52,6 +61,9 @@ void AssetManager::AddMusic(std::string musicId, const char* filePath){
 }
 
 Audio* AssetManager::GetMusic(std::string musicId){
+	auto iter = this->music.find(musicId);
+	if (iter == music.end()) return nullptr;
+	
 	return music[musicId];
 }
 
