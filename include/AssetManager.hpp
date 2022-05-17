@@ -56,4 +56,11 @@ struct AudioInfo {
     std::string filePath;
 };
 
+struct TilemapInfo {
+    std::string id;
+    std::string textureId;
+    int tileSize;
+    int margin;
+};
+
 #endif

@@ -59,6 +59,7 @@ const char* fontsKey = "Fonts";
 const char* texturesKey = "Textures";
 const char* sfxKey = "SFX";
 const char* musicKey = "Music";
+const char* tilemapsKey = "Tilemaps";
 
 void AssetManager::LoadFromAssetsJson(const char* filePath)
 {
@@ -115,5 +116,16 @@ void AssetManager::LoadFromAssetsJson(const char* filePath)
 		newMusic.filePath = f["path"].get<std::string>();
 
 		this->AddMusic(newMusic.id, newMusic.filePath.c_str());
+	}
+
+	for(const auto& f : parsedAssetFile[tilemapsKey])
+	{
+		TilemapInfo newTilemap;
+		newTilemap.id = f["id"].get<std::string>();
+		newTilemap.textureId = f["texture"].get<std::string>();
+		newTilemap.tileSize = f["tile_size"].get<int>();
+		newTilemap.margin = f["margin"].get<int>();
+
+		this->AddTilemap(newTilemap.textureId, newTilemap.id, newTilemap.tileSize, newTilemap.margin);
 	}
 }
