@@ -95,10 +95,10 @@ void AssetManager::LoadFromAssetsJson(const char* filePath)
 
 	for(const auto& f : parsedAssetFile[sfxKey])
 	{
-		AudioInfo newAudio;
-		newAudio.id = f["id"].get<std::string>();
-		newAudio.filePath = f["path"].get<std::string>();
+		AudioInfo newSFX;
+		newSFX.id = f["id"].get<std::string>();
+		newSFX.filePath = f["path"].get<std::string>();
 
-		this->AddSFX(newAudio.id, newAudio.filePath.c_str());
+		this->AddSFX(newSFX.id, newSFX.filePath.c_str());
 	}
 }
