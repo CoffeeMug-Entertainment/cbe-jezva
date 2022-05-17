@@ -16,9 +16,19 @@ GameManager::~GameManager(){}
 
 void GameManager::MakeEntities()
 {
+	/*
+	* Loading from JSON works.
+	* It's not required, and you can make your own loader
+	* and pass the data over to AssetManager methods
+	* (Obviously, check AssetManager.hpp to see what's available)
+	*/
 	//TODO fhomolka 06/06/2021 15:31 -> Move this
 	Game::assetManager->LoadFromAssetsJson("./assets/assets.json");
 	
+	/*
+	* Entities don't get a Transform Component when they're created, like with some engines
+	* Remember to add it if you want to use engine-defined components, since most of them require it
+	*/
 
 	//Ball
 	Entity& ball = Game::entityManager->AddEntity("Ball");
@@ -30,15 +40,19 @@ void GameManager::MakeEntities()
 	ballLogic.gameManager = this;
 
 	//Paddles
+	int paddleWidth = 10;
+	int paddleHeight = 100;
+	int paddleStartingPosY = 250;
+
 	Entity& playerPaddle = Game::entityManager->AddEntity("PlayerPaddle");
-	C_Transform& playerTransform = playerPaddle.AddComponent<C_Transform>(10, 250, 10, 100, 1);
+	C_Transform& playerTransform = playerPaddle.AddComponent<C_Transform>(10, paddleStartingPosY, paddleWidth, paddleHeight);
 	playerPaddle.AddComponent<C_SolidColour>(CB::Colour{0.0f, 0.58f, 0.58f, 1.0f});
 	playerPaddle.AddComponent<C_Collider>("Paddle", playerTransform.position.x, playerTransform.position.y, playerTransform.width, playerTransform.height);
 	playerPaddle.AddComponent<C_PaddleMover>();
 	playerPaddle.AddComponent<C_PlayerController>();
 
 	Entity& rightPaddle = Game::entityManager->AddEntity("RightPaddle");
-	C_Transform& rightPaddleTransform = rightPaddle.AddComponent<C_Transform>(800 - 10 - 10, 350, 10, 100, 1);
+	C_Transform& rightPaddleTransform = rightPaddle.AddComponent<C_Transform>(800 - 10 - paddleWidth, paddleStartingPosY, paddleWidth, paddleHeight);
 	rightPaddle.AddComponent<C_SolidColour>(CB::Colour{0.58f, 0.58f, 0.0f, 1.0f});
 	rightPaddle.AddComponent<C_Collider>("Paddle", rightPaddleTransform.position.x, rightPaddleTransform.position.y, rightPaddleTransform.width, rightPaddleTransform.height);
 	rightPaddle.AddComponent<C_PaddleMover>();
@@ -54,6 +68,12 @@ void GameManager::MakeEntities()
 	AIScore.AddComponent<C_Text>(450, 20, "0", "silkBold", CB::Colour{1.0f, 1.0f, 1.0f, 1.0f});
 	aiScoreLabel = AIScore.GetComponent<C_Text>();
 
+	/*
+	* The engine does music
+	* Only 1 song at a time.
+	* Volume value optional (0.0f - 1.0f), if omitted, it will be played at max volume
+	* For SFX check C_BallLogic::Update or GameManager::Pointscored
+	*/
 	AudioManager::PlayWav(Game::assetManager->GetMusic("relax"));
 }
 
@@ -79,7 +99,7 @@ void GameManager::PointScored(int playerId)
 			this->aiScoreLabel->SetLabelText(std::to_string(aiScore));
 			AudioManager::PlayWav(Game::assetManager->GetSFX("ai_score"));
 			break;
-		default:
+		default: //Here to silence warnings and check if it's snowing in hell
 			Game::logger->Log("The heck?");
 			break;
 	}

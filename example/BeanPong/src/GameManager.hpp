@@ -8,6 +8,10 @@ class Ball;
 
 class GameManager
 {
+	/*
+	* GameManager class
+	* Honestly, you're better off reading GameManager.cpp
+	*/
 	public:
 		GameManager();
 		~GameManager();
