@@ -42,12 +42,12 @@ Tilemap* AssetManager::GetTilemap(std::string tilemapId)
 }
 */
 
-void AssetManager::AddSFX(std::string audioId, const char* filePath) {
-	sfx.emplace(audioId, AudioManager::LoadWav(filePath));
+void AssetManager::AddSFX(std::string sfxId, const char* filePath) {
+	sfx.emplace(sfxId, AudioManager::LoadWav(filePath));
 }
 
-Audio* AssetManager::GetSFX(std::string audioId) {
-	return sfx[audioId];
+Audio* AssetManager::GetSFX(std::string sfxId) {
+	return sfx[sfxId];
 }
 
 const char* fontsKey = "Fonts";

@@ -22,8 +22,8 @@ class AssetManager {
 		SDL_Texture* GetTexture(std::string textureId);
 		void AddFont(std::string fontId, const char* filePath, int fontSize);
 		sdl_stb_font_cache* GetFont(std::string fontId);
-        void AddSFX(std::string audioId, const char* filePath);
-        Audio* GetSFX(std::string audioId);
+        void AddSFX(std::string sfxId, const char* filePath);
+        Audio* GetSFX(std::string sfxId);
         void LoadFromAssetsJson(const char* filePath);
         //Tilemap* CreateTilemap(std::string textureId, std::string tilemapId, int tileSize, int margin = 0);
         //Tilemap* GetTilemap(std::string tilemapId);
