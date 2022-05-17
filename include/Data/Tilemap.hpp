@@ -34,6 +34,9 @@ namespace CB
 			return srcRect;
 		}
 	};
+
+	// We should allow both
+	using Spritesheet = Tilemap;
 }
 
 #endif
