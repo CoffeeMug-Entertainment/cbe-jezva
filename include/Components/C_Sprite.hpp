@@ -28,10 +28,12 @@ class C_Sprite: public Component {
 
 		void Initialize() override {
 			transform = owner->GetComponent<C_Transform>();
+			int width, height;
+			SDL_QueryTexture(texture, NULL, NULL, &width, &height);
 			sourceRectangle.x = 0;
 			sourceRectangle.y = 0;
-			sourceRectangle.w = transform->width;
-			sourceRectangle.h = transform->height;
+			sourceRectangle.w = width;
+			sourceRectangle.h = height;
 		}
 
 		void Update(float deltaTime) override {
