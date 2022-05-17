@@ -31,7 +31,7 @@ class AssetManager {
         EntityManager* entityManager;
         std::map<std::string, SDL_Texture*> textures;
         std::map<std::string, sdl_stb_font_cache*> fonts;
-        std::map<std::string, Audio*> audio;
+        std::map<std::string, Audio*> sfx;
         //std::map<std::string, CB::Tilemap> tilemaps;
 };
 

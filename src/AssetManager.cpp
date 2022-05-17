@@ -43,11 +43,11 @@ Tilemap* AssetManager::GetTilemap(std::string tilemapId)
 */
 
 void AssetManager::AddSFX(std::string audioId, const char* filePath) {
-	audio.emplace(audioId, AudioManager::LoadWav(filePath));
+	sfx.emplace(audioId, AudioManager::LoadWav(filePath));
 }
 
 Audio* AssetManager::GetSFX(std::string audioId) {
-	return audio[audioId];
+	return sfx[audioId];
 }
 
 const char* fontsKey = "Fonts";
