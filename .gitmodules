@@ -13,3 +13,6 @@
 [submodule "thirdparty/sdl_stb_font"]
 	path = thirdparty/sdl_stb_font
 	url = https://github.com/SnapperTT/sdl_stb_font.git
+[submodule "thirdparty/Simple-SDL2-Audio"]
+	path = thirdparty/Simple-SDL2-Audio
+	url = https://github.com/jakebesworth/Simple-SDL2-Audio.git
