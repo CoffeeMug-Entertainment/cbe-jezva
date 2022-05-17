@@ -7,7 +7,7 @@
 #include "AudioManager.hpp"
 #include "sdlStbFont.h"
 #include "nlohmann/json.hpp"
-//#include <Data/Tilemap.hpp>
+#include "Data/Tilemap.hpp"
 
 #include <map>
 #include <string>
@@ -27,15 +27,15 @@ class AssetManager {
         void AddMusic(std::string musicId, const char* filePath);
         Audio* GetMusic(std::string musicId);
         void LoadFromAssetsJson(const char* filePath);
-        //Tilemap* CreateTilemap(std::string textureId, std::string tilemapId, int tileSize, int margin = 0);
-        //Tilemap* GetTilemap(std::string tilemapId);
+        void AddTilemap(std::string textureId, std::string tilemapId, int tileSize, int margin = 0);
+        CB::Tilemap* GetTilemap(std::string tilemapId);
     private:
         EntityManager* entityManager;
         std::map<std::string, SDL_Texture*> textures;
         std::map<std::string, sdl_stb_font_cache*> fonts;
         std::map<std::string, Audio*> sfx;
         std::map<std::string, Audio*> music;
-        //std::map<std::string, CB::Tilemap> tilemaps;
+        std::map<std::string, CB::Tilemap*> tilemaps;
 };
 
 

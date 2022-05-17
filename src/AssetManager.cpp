@@ -26,21 +26,18 @@ sdl_stb_font_cache* AssetManager::GetFont(std::string fontId){
 	return fonts[fontId];
 }
 
-/*
-void CreateTilemap(std::string textureId, std::string tilemapId, int tileSize, int margin = 0)
+
+void AssetManager::AddTilemap(std::string textureId, std::string tilemapId, int tileSize, int margin)
 {
-	Tilemap* newTilemap = new Tilemap(tilemapId, textureId, tileSize, margin);
+	CB::Tilemap* newTilemap = new CB::Tilemap(tilemapId, this->GetTexture(textureId), tileSize, margin);
+	tilemaps.emplace(tilemapId, newTilemap);
+}
 
-	tilemaps.emplace(newTilemap);
-
+CB::Tilemap* AssetManager::GetTilemap(std::string tilemapId)
+{
 	return this->tilemaps[tilemapId];
 }
 
-Tilemap* AssetManager::GetTilemap(std::string tilemapId)
-{
-	return this->tilemaps[tilemapId]
-}
-*/
 
 void AssetManager::AddSFX(std::string sfxId, const char* filePath) {
 	sfx.emplace(sfxId, AudioManager::LoadWav(filePath));
