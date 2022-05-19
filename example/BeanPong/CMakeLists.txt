@@ -15,6 +15,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/CoffeeBean/thirdpar
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/CoffeeBean/thirdparty/Xoshiro)
 
 add_subdirectory(thirdparty/CoffeeBean)
+include(thirdparty/CoffeeBean/cmake/cbe_defines.cmake)
 
 IF(MINGW)
 target_link_libraries(${PROJECT_NAME} -static-libstdc++)
