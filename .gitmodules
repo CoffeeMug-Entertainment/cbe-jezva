@@ -16,3 +16,6 @@
 [submodule "thirdparty/Simple-SDL2-Audio"]
 	path = thirdparty/Simple-SDL2-Audio
 	url = https://github.com/jakebesworth/Simple-SDL2-Audio.git
+[submodule "thirdparty/sokol"]
+	path = thirdparty/sokol
+	url = https://github.com/floooh/sokol.git
