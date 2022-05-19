@@ -16,6 +16,16 @@ target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/CoffeeBean/thirdpar
 
 add_subdirectory(thirdparty/CoffeeBean)
 
+IF(MINGW)
+target_link_libraries(${PROJECT_NAME} -static-libstdc++)
+target_link_libraries(${PROJECT_NAME} -static-libgcc)
+target_link_libraries(${PROJECT_NAME} mingw32)
+ENDIF()
+
+IF(WIN32)
+target_link_libraries(${PROJECT_NAME} SDL2main)
+ENDIF()
+
 target_link_libraries(${PROJECT_NAME} CoffeeBean)
 
 file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
