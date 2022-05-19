@@ -10,17 +10,14 @@
 * The bad practices should be apparent.
 */
 
-// Not required, but I like having some sort of manager, to handle my 'level construction' logic, track states, etc.
-GameManager *gameManager;
-
 int main(int argc, char *argv[]) {
-	Game *game = new Game("BeanPong");
-	game->Initialize(800, 600);
-    gameManager = new GameManager();
-    gameManager->MakeEntities();
-    game->MainLoop();
-    game->logger->Log("Freeing game");
-    delete game;
+	Game game = Game("BeanPong");
+	game.Initialize(800, 600);
+    // Not required, but I like having some sort of manager, to handle my 'level construction' logic, track states, etc.
+    GameManager gameManager = GameManager();
+    gameManager.MakeEntities();
+    game.MainLoop();
+    game.logger->Log("Freeing game");
 	
 	return 0;
 }
