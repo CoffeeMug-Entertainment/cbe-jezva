@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23.1)
 project(BeanPong)
 
-file(GLOB_RECURSE sources src/*.cpp thirdparty/CoffeeBean/thirdparty/Simple-SDL2-Audio/src/audio.c)
+file(GLOB_RECURSE sources src/*.cpp src/*.hpp thirdparty/CoffeeBean/thirdparty/Simple-SDL2-Audio/src/audio.c)
 
 add_executable(${PROJECT_NAME} ${sources})
 target_include_directories(${PROJECT_NAME} PUBLIC src)
