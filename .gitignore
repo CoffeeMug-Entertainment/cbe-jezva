@@ -1,6 +1,8 @@
 # Ignore the example game
 
 example/BeanPong/BeanPong
+example/BeanPong/thirdparty
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/c,vim,c++,kate,linux,emacs,macos,eclipse,windows,clion+all,kdevelop4,codeblocks,sublimetext,visualstudio,visualstudiocode,premake-gmake,cmake,qtcreator,lua
 # Edit at https://www.toptal.com/developers/gitignore?templates=c,vim,c++,kate,linux,emacs,macos,eclipse,windows,clion+all,kdevelop4,codeblocks,sublimetext,visualstudio,visualstudiocode,premake-gmake,cmake,qtcreator,lua
@@ -122,6 +124,7 @@ dkms.conf
 # *.ipr
 
 # CMake
+build
 cmake-build-*/
 
 # Mongo Explorer plugin
