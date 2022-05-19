@@ -8,6 +8,7 @@ then
     cp -r ../../include thirdparty/CoffeeBean/include
     cp -r ../../src thirdparty/CoffeeBean/src
     cp -r ../../thirdparty thirdparty/CoffeeBean/thirdparty
+    cp -r ../../cmake thirdparty/CoffeeBean/cmake
     cp ../../CMakeLists.txt thirdparty/CoffeeBean/CMakeLists.txt
 fi
 
