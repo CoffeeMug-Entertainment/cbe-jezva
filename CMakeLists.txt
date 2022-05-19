@@ -4,7 +4,7 @@ project(CoffeeBean)
 file(GLOB_RECURSE sources src/*.cpp)
 file(GLOB_RECURSE includes include/*.hpp)
 
-add_library(${PROJECT_NAME} ${sources} ${include})
+add_library(${PROJECT_NAME} ${sources} ${includes})
 include_directories(include)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/SDL2/include)
