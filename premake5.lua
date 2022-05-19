@@ -24,6 +24,8 @@ project "CoffeeBean"
 
 	files
 	{
+		"include/**.h",
+		"include/**.hpp",
 		"src/**.cpp",
 		"src/*.c",
 		"thirdparty/Simple-SDL2-Audio/src/audio.c"
