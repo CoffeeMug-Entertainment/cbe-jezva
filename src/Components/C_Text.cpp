@@ -36,6 +36,10 @@ void C_Text::SetLabelText(std::string text, std::string newfontFamily) {
 
 	this->size.x = x;
 	this->size.y = y;
+
+	SDL_Color textColor = this->colour.ToSDLColor();
+	SDL_SetTextureColorMod(this->texture, textColor.r, textColor.g, textColor.b);
+	SDL_SetTextureAlphaMod(this->texture, textColor.a);
 }
 
 void C_Text::Render() {
