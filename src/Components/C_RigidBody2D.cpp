@@ -45,7 +45,8 @@ void C_RigidBody2D::Update([[maybe_unused]] float deltaTime) {
 void C_RigidBody2D::SetPosition(CB::Vec2 newPos) {
 	this->bodyTransform->position.x = newPos.x;
 	this->bodyTransform->position.y = newPos.y;
-	this->bodyDef.position.Set(bodyTransform->GetCentre().x / PIXELS_PER_METER, bodyTransform->GetCentre().y / PIXELS_PER_METER);
+	this->body->SetTransform(b2Vec2{bodyTransform->GetCentre().x / PIXELS_PER_METER, 
+							bodyTransform->GetCentre().y / PIXELS_PER_METER}, 0);
 }
 
 CB::Vec2 C_RigidBody2D::GetPosition() {
