@@ -8,7 +8,7 @@ class Ren_SDL : public CB_Renderer
 {
 public:
 	Ren_SDL();
-	~Ren_SDL();
+	virtual ~Ren_SDL();
 
 	bool Initialize() override;
 	void Render() override;

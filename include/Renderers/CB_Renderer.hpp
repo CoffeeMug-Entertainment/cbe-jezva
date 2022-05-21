@@ -8,7 +8,7 @@ class CB_Renderer
 {
 public:
 	CB_Renderer(){};
-	~CB_Renderer(){};
+	virtual ~CB_Renderer(){};
 	
 	virtual bool Initialize(){return false;};
 	virtual void Render(){};

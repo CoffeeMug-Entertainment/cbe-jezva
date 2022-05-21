@@ -19,7 +19,7 @@ bool EntityManager::HasNoEntities() {
 }
 
 void EntityManager::Update(float deltaTime) {
-	for (int i = 0; i < entities.size(); i++)
+	for (size_t i = 0; i < entities.size(); i++)
 	{
 		entities[i]->Update(deltaTime);
 		if(!entities[i]->IsActive()){
@@ -31,7 +31,7 @@ void EntityManager::Update(float deltaTime) {
 }
 
 void EntityManager::Render() {
-	for (int layerNumber = 0; layerNumber < NUM_LAYERS; layerNumber++) {
+	for (size_t layerNumber = 0; layerNumber < NUM_LAYERS; layerNumber++) {
 		for (auto& entity : GetEntitiesByLayer(static_cast<Layer>(layerNumber))) {
 			entity->Render();
 		}
@@ -108,11 +108,11 @@ bool AABBCollisionCheck(C_Collider* firstEntity, C_Collider* secondEntity)
 
 void EntityManager::CheckCollisions()
 {
-    for (int i = 0; i < entities.size() - 1; i++) {
+    for (size_t i = 0; i < entities.size() - 1; i++) {
         auto& thisEntity = entities[i];
         if (thisEntity->HasComponent<C_Collider>()) {
             C_Collider* thisCollider = thisEntity->GetComponent<C_Collider>();
-            for (int j = i + 1; j < entities.size(); j++) {
+            for (size_t j = i + 1; j < entities.size(); j++) {
                 auto& thatEntity = entities[j];
                 if (thisEntity->name.compare(thatEntity->name) != 0 && thatEntity->HasComponent<C_Collider>()) {
                     C_Collider* thatCollider = thatEntity->GetComponent<C_Collider>();
