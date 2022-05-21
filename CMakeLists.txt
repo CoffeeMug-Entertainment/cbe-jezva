@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.23.1)
 project(CoffeeBean)
 
-file(GLOB_RECURSE sources src/*.cpp)
-file(GLOB_RECURSE includes include/*.hpp)
+file(GLOB_RECURSE sources src/*.cpp src/*.c thirdparty/Simple-SDL2-Audio/src/audio.c)
+file(GLOB_RECURSE includes include/*.hpp include/*.h)
 
 include(cmake/cbe_defines.cmake)
 
