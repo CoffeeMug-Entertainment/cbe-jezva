@@ -14,7 +14,6 @@ Logger* Game::logger;
 RandomNumberGenerator* Game::rng;
 CoffeeBeanConfig Game::config;
 SDL_Rect Game::camera;
-SDL_AudioDeviceID Game::audioDevice;
 
 Game::Game(std::string title) 
 {

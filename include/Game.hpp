@@ -37,7 +37,6 @@ class Game{
         static Logger *logger;
         static RandomNumberGenerator *rng;
         static CoffeeBeanConfig config;
-        static SDL_AudioDeviceID audioDevice;
         
         void LoadConfig(std::string filePath);
         void Run();
@@ -53,9 +52,6 @@ class Game{
         bool isRunning;
         
 		float ticksLastFrame; //number of ticks SDL reported last frame
-        SDL_AudioSpec desiredAudioSpec;
-
-
 };
 
 #endif
