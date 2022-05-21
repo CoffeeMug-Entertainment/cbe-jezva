@@ -9,7 +9,7 @@ class C_Tile: public Component {
 		C_Tile(std::string tilemapId, CB::Vec2 tileCoords = {0, 0}, int scale = 1);
 		~C_Tile();
 
-		void Update(float deltaTime) override;
+		void Update([[maybe_unused]] float deltaTime) override;
 		void Initialize() override;
 		void Render() override;
 	private: 

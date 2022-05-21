@@ -19,7 +19,7 @@ public:
 	~C_SolidColour();
 
 	void Initialize() override;
-	void Update(float deltaTime) override;
+	void Update([[maybe_unused]] float deltaTime) override;
 	void Render() override;
 };
 

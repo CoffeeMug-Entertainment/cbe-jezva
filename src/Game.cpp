@@ -49,6 +49,7 @@ bool Game::IsRunning() const {
 
 void Game::LoadConfig(std::string filePath){
     //TODO fhomolka 17/10/2020 20:37 -> Load from .cfg file
+	(void)filePath;
 }
 
 void Game::Run(){

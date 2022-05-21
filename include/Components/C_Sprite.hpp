@@ -36,7 +36,7 @@ class C_Sprite: public Component {
 			sourceRectangle.h = height;
 		}
 
-		void Update(float deltaTime) override {
+		void Update([[maybe_unused]] float deltaTime) override {
 
 			destinationRectangle.x = static_cast<int>(transform->position.x) - (isFixed ? 0 : Game::camera.x);
 			destinationRectangle.y = static_cast<int>(transform->position.y) - (isFixed ? 0 : Game::camera.y);

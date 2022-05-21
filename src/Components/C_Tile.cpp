@@ -20,6 +20,7 @@ void C_Tile::Initialize()
 
 void C_Tile::Update(float deltaTime)
 {
+	(void)deltaTime;
     destinationRectangle.x = static_cast<int>(transform->position.x) - Game::camera.x;
 	destinationRectangle.y = static_cast<int>(transform->position.y) - Game::camera.y;
 	destinationRectangle.w = transform->width * transform->scale;

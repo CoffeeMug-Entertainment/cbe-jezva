@@ -24,7 +24,7 @@ void C_SolidColour::Initialize()
 	destinationRectangle.h = transform->height;
 }
 
-void C_SolidColour::Update(float deltaTime)
+void C_SolidColour::Update([[maybe_unused]] float deltaTime)
 {
 
 	destinationRectangle.x = transform->position.x;

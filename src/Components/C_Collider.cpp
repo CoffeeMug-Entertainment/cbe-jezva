@@ -20,7 +20,7 @@ void C_Collider::Initialize(){
 	}
 }
 
-void C_Collider::Update(float deltaTime){
+void C_Collider::Update([[maybe_unused]] float deltaTime){
 	collider.x = static_cast<int>(transform->position.x); 
 	collider.y = static_cast<int>(transform->position.y);
 	collider.w = transform->width * transform->scale;

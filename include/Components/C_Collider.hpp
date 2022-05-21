@@ -26,7 +26,7 @@ class C_Collider: public Component {
 
         void Initialize() override;
 
-        void Update(float deltaTime) override;
+        void Update([[maybe_unused]] float deltaTime) override;
 
         virtual void OnCollisionReported(Entity* otherEntity);
 

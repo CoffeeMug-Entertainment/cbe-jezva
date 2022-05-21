@@ -19,6 +19,7 @@ namespace CB
 			this->Id = tilemapId;
 			this->texture = texture;
 			this->tileSize = tileSize;
+			this->margin = margin;
 		}
 
 		SDL_Rect GetTileRect(CB::Vec2 tileCoord)

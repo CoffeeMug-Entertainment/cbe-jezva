@@ -11,7 +11,7 @@ class Component{
 		Component(){};
 		virtual ~Component(){};
 		virtual void Initialize(){};
-		virtual void Update(float deltaTime){};
+		virtual void Update(float deltaTime){(void)deltaTime;};
 		virtual void Render(){};
 };
 
