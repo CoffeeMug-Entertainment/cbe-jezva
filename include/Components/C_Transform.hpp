@@ -19,7 +19,7 @@ class C_Transform: public Component {
 
 		void Initialize() override;
 
-		void Update(float deltaTime) override;
+		void Update([[maybe_unused]] float deltaTime) override;
 
 		CB::Vec2 GetCentre();
 

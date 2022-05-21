@@ -18,7 +18,7 @@ C_Transform::C_Transform(CB::Vec2 newPos, int w, int h, float s)
 
 void C_Transform::Initialize() {}
 
-void C_Transform::Update(float deltaTime) 
+void C_Transform::Update([[maybe_unused]] float deltaTime) 
 {
 	
 }
