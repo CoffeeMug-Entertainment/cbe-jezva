@@ -14,7 +14,10 @@ class C_RigidBody2D : public Component
 		~C_RigidBody2D();
 		void Initialize() override;
 		void Update([[maybe_unused]] float deltaTime) override;
+		void SetVelocity(CB::Vec2 newVel);
+		CB::Vec2 GetVelocity();
 		void ApplyForce(CB::Vec2 force);
+		void ApplyImpulse(CB::Vec2 impulse);
 	private:
 		C_Transform *bodyTransform;
 		b2BodyDef bodyDef;
