@@ -21,4 +21,4 @@
 	url = https://github.com/floooh/sokol.git
 [submodule "thirdparty/box2d"]
 	path = thirdparty/box2d
-	url = https://github.com/erincatto/box2d.git
+	url = https://github.com/CoffeeMug-Entertainment/box2d.git
