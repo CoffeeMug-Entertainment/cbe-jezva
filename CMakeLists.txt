@@ -17,7 +17,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/Simple-SDL2-Audio/s
 target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC thirdparty/sdl_stb_font) #Not system, but this thing has a ton of warnings
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/json/single_include)
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/Xoshiro)
+target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/box2d/include)
 include_directories(${SDL2_INCLUDE_DIRS})
 
+add_subdirectory(thirdparty/box2d/)
+
 find_package(SDL2 REQUIRED)
-target_link_libraries(${PROJECT_NAME} SDL2::SDL2)
+target_link_libraries(${PROJECT_NAME} SDL2::SDL2 box2d)
