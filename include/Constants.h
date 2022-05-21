@@ -17,4 +17,7 @@ enum Layer{
 
 };
 const unsigned int NUM_LAYERS = 8;
+
+//TODO(fhomolka): camera zoom and stuff
+const float PIXELS_PER_METER = 32;
 #endif
