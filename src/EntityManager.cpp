@@ -36,7 +36,6 @@ void EntityManager::Update(float deltaTime) {
 	}
 
 	box2DWorld->Step(deltaTime, velIterations, posIterations);
-	CheckCollisions();
 }
 
 void EntityManager::Render() {
