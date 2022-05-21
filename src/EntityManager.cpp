@@ -3,9 +3,15 @@
 
 #include <iostream>
 
-EntityManager::EntityManager(){}
+EntityManager::EntityManager()
+{
+	box2DWorld = new b2World(b2Vec2{0, 10});
+}
 
-EntityManager::~EntityManager(){}
+EntityManager::~EntityManager()
+{
+	delete box2DWorld;
+}
 
 
 void EntityManager::ClearData() {
@@ -18,6 +24,8 @@ bool EntityManager::HasNoEntities() {
 	return entities.size() == 0;
 }
 
+const int32 velIterations = 8;
+const int32 posIterations = 3;
 void EntityManager::Update(float deltaTime) {
 	for (size_t i = 0; i < entities.size(); i++)
 	{
@@ -27,6 +35,7 @@ void EntityManager::Update(float deltaTime) {
 		}
 	}
 
+	box2DWorld->Step(deltaTime, velIterations, posIterations);
 	CheckCollisions();
 }
 

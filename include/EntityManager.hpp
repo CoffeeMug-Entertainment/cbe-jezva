@@ -6,6 +6,7 @@
 #include "Component.hpp"
 //#include "C_Collider.hpp" //Do not include, avoid circular inclusion
 #include "Constants.h"
+#include "box2d/b2_world.h"
 
 #include <vector>
 #include <string>
@@ -15,14 +16,8 @@ class Entity;
 //class C_Collider;
 
 class EntityManager{
-
-	private:
-		std::vector<Entity*> entities;
-
-		//bool AABBCollisionCheck(C_Collider* firstEntity, C_Collider* secondEntity);
-
-
 	public:
+		b2World* box2DWorld;
         EntityManager();
         ~EntityManager();
 		void ClearData();
@@ -39,6 +34,10 @@ class EntityManager{
 		std::string CheckEntityCollisions(Entity& entity) const;
 		void CheckCollisions();
 		void DestroyInactiveEntities();
+
+	private:
+		std::vector<Entity*> entities;
+		//bool AABBCollisionCheck(C_Collider* firstEntity, C_Collider* secondEntity);
 };
 
 #endif
