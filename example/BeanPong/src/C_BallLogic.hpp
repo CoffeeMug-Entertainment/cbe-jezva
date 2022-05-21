@@ -24,9 +24,9 @@ class C_BallLogic : public Component
 		void LaunchBall();
 		GameManager* gameManager;
 	private:
-		float startingSpeed = 70;
-		float currentSpeed = 70;
-		float accel = 10;
+		float startingSpeed = 1;
+		float currentSpeed = 1;
+		float accel = 1;
 		C_Transform *ballTransform;
 		C_RigidBody2D *ballRigidBody;
 };
