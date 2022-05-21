@@ -1,7 +1,7 @@
 #include "Components/C_Collider.hpp"
 #include "Components/C_RigidBody2D.hpp"
 
-C_Collider::C_Collider() {}
+C_Collider::C_Collider(std::string colTag) {this->colliderTag = colTag;}
 C_Collider::~C_Collider() {}
 
 void C_Collider::Initialize() {

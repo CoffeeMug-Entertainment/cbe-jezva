@@ -17,7 +17,7 @@ class C_Collider: public Component {
         std::vector<std::function<void(Entity*)>> onCollisionEnterFuncs;
         std::vector<std::function<void(Entity*)>> onCollisionExitFuncs;
 
-        C_Collider();
+        C_Collider(std::string colTag = "");
         ~C_Collider();
 
         void Initialize() override;
@@ -28,7 +28,7 @@ class C_Collider: public Component {
         //void RegisterFunc(void (*newFunc)(Entity*));
         void RegisterOnEnterFunc(std::function<void(Entity*)> func);
         void RegisterOnExitFunc(std::function<void(Entity*)> func);
-
+        std::string colliderTag;
 
 };
 
