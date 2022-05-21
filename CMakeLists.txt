@@ -7,7 +7,7 @@ file(GLOB_RECURSE includes include/*.hpp)
 include(cmake/cbe_defines.cmake)
 
 add_library(${PROJECT_NAME} ${sources} ${includes})
-add_definitions("-Wall")
+add_definitions("-Wall -Wextra")
 include_directories(include)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/SDL2/include)
