@@ -8,7 +8,7 @@ C_PaddleMover::~C_PaddleMover(){}
 void C_PaddleMover::Initialize() {
 
 	this->paddleTransform = owner->GetComponent<C_Transform>();
-
+	this->paddleRb = owner->GetComponent<C_RigidBody2D>();
 }
 
 void C_PaddleMover::Update(float deltaTime) {
@@ -22,7 +22,7 @@ void C_PaddleMover::Update(float deltaTime) {
 		movementDistance = 0;
 	}
 
-	paddleTransform->Translate(CB::Vec2{0, movementDistance});
+	paddleRb->SetVelocity(CB::Vec2{0, movementDistance});
 	
 }
 

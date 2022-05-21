@@ -18,8 +18,8 @@ void C_BallLogic::Initialize()
 	* If you're binding methods, use the FBIND() macro
 	* BEWARE: There's currently no ways to UNBIND methods/functions when bound, so generally stick binds within the entity
 	*/
-	this->owner->GetComponent<C_Collider>()->RegisterFunc(FBind(&C_BallLogic::OnCollisionReported));
-	//his->ballRigidBody = this->owner->GetComponent<C_RigidBody2D>();
+	this->owner->GetComponent<C_Collider>()->RegisterOnEnterFunc(FBind(&C_BallLogic::OnCollisionReported));
+	this->ballRigidBody = this->owner->GetComponent<C_RigidBody2D>();
 
 	LaunchBall();
 }
@@ -28,29 +28,29 @@ void C_BallLogic::Update(float deltaTime)
 {
 	if(this->ballTransform->position.y <= 1)
 	{
-		//ballRigidBody->velocity.y = std::abs(ballRigidBody->velocity.y);
-		ballTransform->velocity.y = std::abs(ballTransform->velocity.y);
+		CB::Vec2 ballVel = ballRigidBody->GetVelocity();
+		ballVel.y = std::abs(ballVel.y);
+		ballRigidBody->SetVelocity(ballVel);
 		AudioManager::PlayWav(Game::assetManager->GetSFX("bounce"));
 	}
 	else if (this->ballTransform->position.y + this->ballTransform->height >= 599)
 	{
-		//ballRigidBody->velocity.y = -std::abs(ballRigidBody->velocity.y);
-		ballTransform->velocity.y = -std::abs(ballTransform->velocity.y);
+		CB::Vec2 ballVel = ballRigidBody->GetVelocity();
+		ballVel.y = -std::abs(ballVel.y);
+		ballRigidBody->SetVelocity(ballVel);
 		AudioManager::PlayWav(Game::assetManager->GetSFX("bounce"));
 	}
 
 	if (this->ballTransform->position.x <= 1)
 	{
 		gameManager->PointScored(1);
-		ballTransform->position.x = 400;
-		ballTransform->position.y = 300;
+		ballRigidBody->SetPosition(CB::Vec2{400, 300});
 		LaunchBall();
 	}
 	else if(this->ballTransform->position.x + this->ballTransform->height >= 799)
 	{
 		gameManager->PointScored(0);
-		ballTransform->position.x = 400;
-		ballTransform->position.y = 300;
+		ballRigidBody->SetPosition(CB::Vec2{400, 300});
 		LaunchBall();
 	}
 }
@@ -67,15 +67,14 @@ void C_BallLogic::OnCollisionReported(Entity* otherEntity)
 
 	if (otherEntity->GetComponent<C_Collider>()->colliderTag == "Paddle")
 	{
-		//ballRigidBody->velocity.x += this->accel * CB::Sign(ballRigidBody->velocity.x);
-		//ballRigidBody->velocity.x = -ballRigidBody->velocity.x;
-
-		ballTransform->velocity.x = -ballTransform->velocity.x;
-		ballTransform->velocity.x += this->accel * CB::Sign(ballTransform->velocity.x);
+		CB::Vec2 ballVel = ballRigidBody->GetVelocity();
+		ballVel.x = -ballVel.x;
+		ballVel.x += this->accel * CB::Sign(ballVel.x);
 		float verticalAngle = (ballTransform->GetCentre().y - otherTransform->GetCentre().y) / (otherTransform->height / 2);
 		this->currentSpeed += this->accel;
-		//ballRigidBody->velocity.y = verticalAngle * this->currentSpeed / 2;
-		ballTransform->velocity.y = verticalAngle * this->currentSpeed / 2;
+		ballVel.y = verticalAngle * this->currentSpeed / 2;
+
+		ballRigidBody->SetVelocity(ballVel);
 
 		AudioManager::PlayWav(Game::assetManager->GetSFX("bounce"));
 		return;
@@ -86,6 +85,5 @@ void C_BallLogic::OnCollisionReported(Entity* otherEntity)
 void C_BallLogic::LaunchBall()
 {
 	int newHorDirection = Game::rng->rand_bool() ? 1 : -1; 
-	//ballRigidBody->velocity = CB::Vec2{newHorDirection * this->startingSpeed, 0};
-	ballTransform->velocity = CB::Vec2{newHorDirection * this->startingSpeed, 0};
+	ballRigidBody->SetVelocity(CB::Vec2{newHorDirection * this->startingSpeed, 0});
 }
