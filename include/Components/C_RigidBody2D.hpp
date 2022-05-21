@@ -1,32 +1,34 @@
 #ifndef C_RIGIDBODY2D
 #define C_RIGIDBODY2D
 
-// TODO: fhomolka 06/06/21 18:59
-/*
-* This garbage is god damn broken
-* When all of this velocity nonsense was in C_Transform, it worked fine
-* but now it just doesn't work.
-* WHY?
-*/
-
-
-#include "Component.hpp"
 #include "Components/C_Transform.hpp"
-#include "Types/Vector2.hpp"
+#include "box2d/b2_body.h"
+#include "box2d/b2_polygon_shape.h"
+#include "box2d/b2_fixture.h"
 
 class C_RigidBody2D : public Component 
 {
 	public:
-		C_RigidBody2D(CB::Vec2 velocity = {0, 0}, float deceleration = 0);
+	enum class BodyType {STATIC = 0, DYNAMIC};
+		C_RigidBody2D(BodyType type = BodyType::STATIC);
 		~C_RigidBody2D();
 		void Initialize() override;
-		void Update(float deltaTime) override;
-		void AddVelocity(CB::Vec2 newVelocity);
-		CB::Vec2 velocity;
-		float deceleration;
+		void Update([[maybe_unused]] float deltaTime) override;
+		void SetVelocity(CB::Vec2 newVel);
+		CB::Vec2 GetVelocity();
+		void ApplyForce(CB::Vec2 force);
+		void ApplyImpulse(CB::Vec2 impulse);
+		void SetPosition(CB::Vec2 newPos);
+		CB::Vec2 GetPosition();
 
+		b2Body* GetBody() const;
 	private:
 		C_Transform *bodyTransform;
+		b2BodyDef bodyDef;
+		b2Body* body;
+		b2PolygonShape shape;
+		b2FixtureDef fixtureDef;
+		BodyType type;
 };
 
 #endif

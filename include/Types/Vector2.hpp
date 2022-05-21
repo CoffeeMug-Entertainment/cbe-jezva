@@ -146,6 +146,16 @@ namespace CB
 			return *this;
 		}
 
+		//Conversion
+
+		#ifdef B2_MATH_H //TODO(fhomolka)
+		#include "box2d/b2_math.h"
+		b2Vec2 toBox2DVec2()
+		{
+			return b2Vec2{this->x, this->y};
+		}
+		#endif //B2_MATH_H
+
 		//Useful pre-definitions
 		static const Vec2 ZERO;
 		static const Vec2 ONE;

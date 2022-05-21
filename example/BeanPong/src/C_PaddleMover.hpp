@@ -2,7 +2,7 @@
 #define C_PADDLEMOVER
 
 #include "Component.hpp"
-#include "Components/C_Transform.hpp"
+#include "Components/C_RigidBody2D.hpp"
 
 class C_PaddleMover : public Component
 {
@@ -21,6 +21,7 @@ class C_PaddleMover : public Component
 		void Update(float deltaTime) override;
 		void SetMoveDir(int dir);
 	private:
+		C_RigidBody2D *paddleRb;
 		C_Transform *paddleTransform;
 		float paddleSpeed = 80;
 		int movementDir = 0;

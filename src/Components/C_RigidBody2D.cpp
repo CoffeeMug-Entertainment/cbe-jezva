@@ -1,48 +1,78 @@
 #include "Components/C_RigidBody2D.hpp"
 #include "Components/C_Collider.hpp"
+#include "Game.hpp"
+#include "Constants.h"
 
-//NOTE fhomolka: DO NOT USE! Check Header!
-
-C_RigidBody2D::C_RigidBody2D(CB::Vec2 velocity, float deceleration) {
-	this->velocity = velocity;
-	this->deceleration = deceleration;
+C_RigidBody2D::C_RigidBody2D(BodyType type) {
+	this->type = type;
 }
 
 C_RigidBody2D::~C_RigidBody2D(){}
 
 void C_RigidBody2D::Initialize() {
 	this->bodyTransform = this->owner->GetComponent<C_Transform>();
+	switch (this->type)
+	{
+		case BodyType::STATIC:
+			this->bodyDef.type = b2_staticBody;
+			break;	
+		case BodyType::DYNAMIC:
+			this->bodyDef.type = b2_dynamicBody;
+			break;	
+		default:
+			this->bodyDef.type = b2_staticBody;
+			break;
+	}
+	this->bodyDef.position.Set(bodyTransform->GetCentre().x / PIXELS_PER_METER, bodyTransform->GetCentre().y / PIXELS_PER_METER);
+	this->bodyDef.fixedRotation = true;
+	b2BodyUserData uData;
+	uData.pointer = (uintptr_t)this;
+	this->bodyDef.userData = uData;
+	this->body = Game::entityManager->box2DWorld->CreateBody(&bodyDef);
+	this->shape.SetAsBox((bodyTransform->width * bodyTransform->scale / PIXELS_PER_METER) / 2, (bodyTransform->height * bodyTransform->scale / PIXELS_PER_METER) / 2);
+	fixtureDef.shape = &shape;
+	fixtureDef.density = 1.0f;
+	fixtureDef.friction = 0.3f;
+	body->CreateFixture(&fixtureDef);
 }
 
-void C_RigidBody2D::Update(float deltaTime) {
-	//TODO fhomolka 06/06/2021 17:23 -> Make nicer
-	
-	bodyTransform->Translate(velocity * deltaTime);
-
-	if (deceleration == 0)
-	{
-		return;
-	}
-
-	if (velocity.x > 0)
-	{
-		velocity.x -= deceleration;
-	}
-	else if (velocity.x < 0)
-	{
-		velocity.x += deceleration;
-	}
-
-	if (velocity.y > 0)
-	{
-		velocity.y -= deceleration;
-	}
-	else if (velocity.y < 0)
-	{
-		velocity.y += deceleration;
-	}
+void C_RigidBody2D::Update([[maybe_unused]] float deltaTime) {
+	b2Vec2 newPos = this->body->GetPosition();
+	bodyTransform->position.x = (newPos.x * PIXELS_PER_METER) - (bodyTransform->width / 2);
+	bodyTransform->position.y = (newPos.y * PIXELS_PER_METER) - (bodyTransform->height / 2);
 }
 
-void C_RigidBody2D::AddVelocity(CB::Vec2 newVelocity) {
-	this->velocity += newVelocity;
+void C_RigidBody2D::SetPosition(CB::Vec2 newPos) {
+	this->bodyTransform->position.x = newPos.x;
+	this->bodyTransform->position.y = newPos.y;
+	this->body->SetTransform(b2Vec2{bodyTransform->GetCentre().x / PIXELS_PER_METER, 
+							bodyTransform->GetCentre().y / PIXELS_PER_METER}, 0);
+}
+
+CB::Vec2 C_RigidBody2D::GetPosition() {
+	b2Vec2 newPos = this->body->GetPosition();
+	return CB::Vec2{(newPos.x * PIXELS_PER_METER) - (bodyTransform->width / 2),
+					(newPos.y * PIXELS_PER_METER) - (bodyTransform->height / 2)
+	};
+}
+
+void C_RigidBody2D::SetVelocity(CB::Vec2 newVel) {
+	this->body->SetLinearVelocity(b2Vec2{newVel.x, newVel.y});
+}
+
+CB::Vec2 C_RigidBody2D::GetVelocity() {
+	b2Vec2 vel = body->GetLinearVelocity();
+	return CB::Vec2{vel.x, vel.y};
+}
+
+void C_RigidBody2D::ApplyForce(CB::Vec2 force) {
+	this->body->ApplyForceToCenter(b2Vec2{force.x, force.y}, true);
+}
+
+void C_RigidBody2D::ApplyImpulse(CB::Vec2 impulse) {
+	this->body->ApplyLinearImpulseToCenter(b2Vec2{impulse.x, impulse.y}, true);
+}
+
+b2Body* C_RigidBody2D::GetBody() const {
+	return this->body;
 }

@@ -6,23 +6,30 @@
 #include "Component.hpp"
 //#include "C_Collider.hpp" //Do not include, avoid circular inclusion
 #include "Constants.h"
+#include "box2d/b2_world.h"
 
 #include <vector>
 #include <string>
 #include <type_traits>
+#include <unordered_map>
 
 class Entity;
-//class C_Collider;
+class C_Collider;
+
+class BasicListener : public b2ContactListener
+{
+	public:
+		std::unordered_map<b2Body*, C_Collider*> bodyMap;
+		BasicListener();
+		~BasicListener();
+		void BeginContact(b2Contact* contact) override;
+		void EndContact(b2Contact* contact) override;
+		void RegisterCollider(b2Body* body, C_Collider* collider);
+};
 
 class EntityManager{
-
-	private:
-		std::vector<Entity*> entities;
-
-		//bool AABBCollisionCheck(C_Collider* firstEntity, C_Collider* secondEntity);
-
-
 	public:
+		b2World* box2DWorld;
         EntityManager();
         ~EntityManager();
 		void ClearData();
@@ -36,9 +43,12 @@ class EntityManager{
 		Entity* GetEntityByName(std::string entityName) const;
 		unsigned int GetEntityCount() const;
 		void ListAllEntities() const;
-		std::string CheckEntityCollisions(Entity& entity) const;
-		void CheckCollisions();
 		void DestroyInactiveEntities();
+		void RegisterCollider(b2Body* body, C_Collider* collider);
+	private:
+		std::vector<Entity*> entities;
+		BasicListener contactListener;
+		//bool AABBCollisionCheck(C_Collider* firstEntity, C_Collider* secondEntity);
 };
 
 #endif

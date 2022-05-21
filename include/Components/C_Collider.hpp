@@ -13,26 +13,22 @@
 
 class C_Collider: public Component {
     public:
-        std::string colliderTag;
-        SDL_Rect collider;
-        SDL_Rect sourceRectangle;
-        SDL_Rect destinationRectangle;
-        C_Transform* transform;
-
         //std::vector<void (*)(Entity*)> onCollisionFuncs;
-        std::vector<std::function<void(Entity*)>> onCollisionFuncs;
+        std::vector<std::function<void(Entity*)>> onCollisionEnterFuncs;
+        std::vector<std::function<void(Entity*)>> onCollisionExitFuncs;
 
-        C_Collider(std::string colliderTag, int x, int y, int width, int height);
+        C_Collider(std::string colTag = "");
+        ~C_Collider();
 
         void Initialize() override;
 
-        void Update([[maybe_unused]] float deltaTime) override;
-
-        virtual void OnCollisionReported(Entity* otherEntity);
+        virtual void OnCollisionEnter(Entity* otherEntity);
+        virtual void OnCollisionExit(Entity* otherEntity);
 
         //void RegisterFunc(void (*newFunc)(Entity*));
-        void RegisterFunc(std::function<void(Entity*)> func);
-
+        void RegisterOnEnterFunc(std::function<void(Entity*)> func);
+        void RegisterOnExitFunc(std::function<void(Entity*)> func);
+        std::string colliderTag;
 
 };
 

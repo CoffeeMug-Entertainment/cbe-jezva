@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.23.1)
-project(BeanPong)
+project(BeanPong C CXX)
+
+set(CMAKE_CXX_STANDARD 20)
 
 file(GLOB_RECURSE sources src/*.cpp src/*.hpp thirdparty/CoffeeBean/thirdparty/Simple-SDL2-Audio/src/audio.c)
 

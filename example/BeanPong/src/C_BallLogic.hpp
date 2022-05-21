@@ -3,8 +3,8 @@
 
 #include "Component.hpp"
 #include "GameManager.hpp"
-#include "Components/C_Transform.hpp"
-//#include "Components/C_RigidBody2D.hpp"
+//#include "Components/C_Transform.hpp"
+#include "Components/C_RigidBody2D.hpp"
 #include "CB_Math.hpp"
 
 class GameManager;
@@ -24,11 +24,11 @@ class C_BallLogic : public Component
 		void LaunchBall();
 		GameManager* gameManager;
 	private:
-		float startingSpeed = 70;
-		float currentSpeed = 70;
-		float accel = 10;
+		float startingSpeed = 1;
+		float currentSpeed = 1;
+		float accel = 1;
 		C_Transform *ballTransform;
-//		C_RigidBody2D *ballRigidBody;
+		C_RigidBody2D *ballRigidBody;
 };
 
 #endif
