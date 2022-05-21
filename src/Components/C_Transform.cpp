@@ -1,6 +1,6 @@
 #include "Components/C_Transform.hpp"
 
-C_Transform::C_Transform(int posX, int posY, int w, int h, int s) 
+C_Transform::C_Transform(int posX, int posY, int w, int h, float s) 
 {
 	this->position = CB::Vec2{static_cast<float>(posX), static_cast<float>(posY)};
 	this->width = w;
@@ -11,7 +11,7 @@ C_Transform::C_Transform(int posX, int posY, int w, int h, int s)
 	this->deceleration = 0;
 }
 
-C_Transform::C_Transform(CB::Vec2 newPos, int w, int h, int s) 
+C_Transform::C_Transform(CB::Vec2 newPos, int w, int h, float s) 
 {
 	this->position = newPos;
 	this->width = w;

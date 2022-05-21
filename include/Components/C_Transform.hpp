@@ -11,11 +11,11 @@ class C_Transform: public Component {
 		CB::Vec2 position = {0, 0};
 		int width;
 		int height;
-		int scale;
+		float scale;
 		
-		C_Transform(int posX, int posY, int w, int h, int s = 1);
+		C_Transform(int posX, int posY, int w, int h, float s = 1.0f);
 
-		C_Transform(CB::Vec2 newPos, int w, int h, int s = 1);
+		C_Transform(CB::Vec2 newPos, int w, int h, float s = 1.0f);
 
 		void Initialize() override;
 
