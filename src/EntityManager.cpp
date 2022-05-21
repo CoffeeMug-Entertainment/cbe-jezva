@@ -1,11 +1,15 @@
 #include "EntityManager.hpp"
 #include "Components/C_Collider.hpp"
+#include "Components/C_RigidBody2D.hpp"
+#include "box2d/b2_contact.h"
 
 #include <iostream>
 
 EntityManager::EntityManager()
 {
+	contactListener = BasicListener();
 	box2DWorld = new b2World(b2Vec2{0, 10});
+	box2DWorld->SetContactListener(&contactListener);
 }
 
 EntityManager::~EntityManager()
@@ -99,37 +103,46 @@ void EntityManager::ListAllEntities() const {
 	}
 }
 
-
-//Axis-Aligned Bounding Box Collision
-bool AABBCollisionCheck(C_Collider* firstEntity, C_Collider* secondEntity)
-{
-	if (firstEntity->collider.x < secondEntity->collider.x + secondEntity->collider.w &&
-		firstEntity->collider.x + firstEntity->collider.w > secondEntity->collider.x &&
-		firstEntity->collider.y < secondEntity->collider.y + secondEntity->collider.h &&
-		firstEntity->collider.y + firstEntity->collider.h > secondEntity->collider.y
-		) {
-		return true;
-	}
-
-	return false;
+void EntityManager::RegisterCollider(b2Body* body, C_Collider* collider) {
+	contactListener.RegisterCollider(body, collider);
 }
 
-void EntityManager::CheckCollisions()
-{
-    for (size_t i = 0; i < entities.size() - 1; i++) {
-        auto& thisEntity = entities[i];
-        if (thisEntity->HasComponent<C_Collider>()) {
-            C_Collider* thisCollider = thisEntity->GetComponent<C_Collider>();
-            for (size_t j = i + 1; j < entities.size(); j++) {
-                auto& thatEntity = entities[j];
-                if (thisEntity->name.compare(thatEntity->name) != 0 && thatEntity->HasComponent<C_Collider>()) {
-                    C_Collider* thatCollider = thatEntity->GetComponent<C_Collider>();
-                    if (::AABBCollisionCheck(thisCollider, thatCollider)) {
-                        thisCollider->OnCollisionReported(thatCollider->owner);
-                        thatCollider->OnCollisionReported(thisCollider->owner);
-                    }
-                }
-            }
-        }
-    }
+BasicListener::BasicListener(){}
+BasicListener::~BasicListener(){}
+
+void BasicListener::BeginContact(b2Contact* contact) {
+	b2Body* bodyA = contact->GetFixtureA()->GetBody();
+	b2Body* bodyB = contact->GetFixtureB()->GetBody();
+
+	if (bodyMap.contains(bodyA)) {
+		b2BodyUserData& bodyBUserData = bodyB->GetUserData();
+		C_RigidBody2D* rBody = (C_RigidBody2D*)bodyBUserData.pointer;
+		bodyMap[bodyA]->OnCollisionEnter(rBody->owner);
+	}
+
+	if (bodyMap.contains(bodyB)) {
+		b2BodyUserData& bodyBUserData = bodyA->GetUserData();
+		C_RigidBody2D* rBody = (C_RigidBody2D*)bodyBUserData.pointer;
+		bodyMap[bodyB]->OnCollisionEnter(rBody->owner);
+	}
+}
+void BasicListener::EndContact(b2Contact* contact) {
+	b2Body* bodyA = contact->GetFixtureA()->GetBody();
+	b2Body* bodyB = contact->GetFixtureB()->GetBody();
+
+	if (bodyMap.contains(bodyA)) {
+		b2BodyUserData& bodyBUserData = bodyB->GetUserData();
+		C_RigidBody2D* rBody = (C_RigidBody2D*)bodyBUserData.pointer;
+		bodyMap[bodyA]->OnCollisionExit(rBody->owner);
+	}
+
+	if (bodyMap.contains(bodyB)) {
+		b2BodyUserData& bodyBUserData = bodyA->GetUserData();
+		C_RigidBody2D* rBody = (C_RigidBody2D*)bodyBUserData.pointer;
+		bodyMap[bodyB]->OnCollisionExit(rBody->owner);
+	}
+}
+
+void BasicListener::RegisterCollider(b2Body* body, C_Collider* collider) {
+	bodyMap.emplace(body, collider);
 }

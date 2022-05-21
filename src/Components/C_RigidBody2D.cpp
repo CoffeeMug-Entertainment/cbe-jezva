@@ -25,6 +25,9 @@ void C_RigidBody2D::Initialize() {
 	}
 	this->bodyDef.position.Set(bodyTransform->GetCentre().x / PIXELS_PER_METER, bodyTransform->GetCentre().y / PIXELS_PER_METER);
 	this->bodyDef.fixedRotation = true;
+	b2BodyUserData uData;
+	uData.pointer = (uintptr_t)this;
+	this->bodyDef.userData = uData;
 	this->body = Game::entityManager->box2DWorld->CreateBody(&bodyDef);
 	this->shape.SetAsBox((bodyTransform->width * bodyTransform->scale / PIXELS_PER_METER) / 2, (bodyTransform->height * bodyTransform->scale / PIXELS_PER_METER) / 2);
 	fixtureDef.shape = &shape;
@@ -54,4 +57,8 @@ void C_RigidBody2D::ApplyForce(CB::Vec2 force) {
 
 void C_RigidBody2D::ApplyImpulse(CB::Vec2 impulse) {
 	this->body->ApplyLinearImpulseToCenter(b2Vec2{impulse.x, impulse.y}, true);
+}
+
+b2Body* C_RigidBody2D::GetBody() const {
+	return this->body;
 }

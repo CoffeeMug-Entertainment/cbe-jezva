@@ -18,6 +18,8 @@ class C_RigidBody2D : public Component
 		CB::Vec2 GetVelocity();
 		void ApplyForce(CB::Vec2 force);
 		void ApplyImpulse(CB::Vec2 impulse);
+
+		b2Body* GetBody() const;
 	private:
 		C_Transform *bodyTransform;
 		b2BodyDef bodyDef;
