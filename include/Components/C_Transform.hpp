@@ -24,11 +24,6 @@ class C_Transform: public Component {
 		CB::Vec2 GetCentre();
 
 		void Translate(CB::Vec2 translationValue);
-
-		//HACK fhomolka 06/06/2021 19:14 -> No, I do not like this being here, but RigidBody2D is currently broken
-		void AddVelocity(CB::Vec2 newVelocity);
-		CB::Vec2 velocity = {0, 0};
-		int deceleration;
 };
 
 #endif
