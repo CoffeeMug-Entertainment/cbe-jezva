@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+echo $0
+
+spp="${0:1}"
+second_path_part="${spp:0:-9}"
+echo $second_path_part
+full_path=$PWD$second_path_part
+echo $full_path
+
+export CBE_TOOLS=$full_path
+export PATH=$PATH:$CBE_TOOLS
