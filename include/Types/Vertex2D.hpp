@@ -17,12 +17,16 @@ namespace CB
         inline SDL_Vertex ToSDLVertex()
         {
             SDL_Vertex vert;
-            vert.position.x = static_cast<int>(position.x);
-            vert.position.y = static_cast<int>(position.y);
-
+            vert.position = position.toSDL_FPoint();
             vert.color = color.ToSDLColor();
-
             return vert;
+        }
+
+        Vertex2D& operator=(SDL_Vertex& rhs)
+        {
+            this->position = rhs.position;
+            this->color = rhs.color;
+            return *this;
         }
 
         #endif

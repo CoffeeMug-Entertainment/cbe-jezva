@@ -148,6 +148,34 @@ namespace CB
 
 		//Conversion
 
+		#ifdef SDL_rect_h_
+		#include "SDL_rect.h"
+		SDL_Point toSDL_Point()
+		{
+			return SDL_Point{static_cast<int>(x), static_cast<int>(y)};
+		}
+
+		SDL_FPoint toSDL_FPoint()
+		{
+			return SDL_FPoint{x, y};
+		}
+
+		Vec2& operator=(const SDL_Point& rhs)
+		{
+			this->x = rhs.x;
+			this->y = rhs.y;
+			return *this;
+		}
+
+		Vec2& operator=(const SDL_FPoint& rhs)
+		{
+			this->x = rhs.x;
+			this->y = rhs.y;
+			return *this;
+		}
+
+		#endif //SDL_rect_h_
+
 		#ifdef B2_MATH_H //TODO(fhomolka)
 		#include "box2d/b2_math.h"
 		b2Vec2 toBox2DVec2()
