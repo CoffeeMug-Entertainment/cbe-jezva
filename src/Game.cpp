@@ -12,7 +12,7 @@ InputManager* Game::inputManager;
 SDL_Event Game::event;
 Logger* Game::logger;
 RandomNumberGenerator* Game::rng;
-CoffeeBeanConfig Game::config;
+CBE::CoffeeBeanConfig Game::config;
 SDL_Rect Game::camera;
 
 Game::Game(std::string title) 
@@ -46,9 +46,54 @@ bool Game::IsRunning() const {
 	return this->isRunning;
 }
 
-void Game::LoadConfig(std::string filePath){
-    //TODO fhomolka 17/10/2020 20:37 -> Load from .cfg file
-	(void)filePath;
+const char* windowWidthKey = "window_width";
+const char* windowHeightKey = "window_height";
+const char* fullscreenKey = "fullscreen";
+const char* vidBackendKey = "vid_backend";
+
+void Game::LoadConfig(std::string filePath) {
+    std::ifstream cfgFile(filePath);
+	std::string unparsedCfgFileData;
+
+	if (!cfgFile)
+	{
+		Game::logger->LogError("Tried parsing " + std::string(filePath) + " but that doesn't exist!");
+		config.window.width = 1280;
+		config.window.height = 720;
+		config.window.flags |= SDL_WINDOW_BORDERLESS;
+		return;
+	}
+
+	std::ostringstream ss;
+	ss << cfgFile.rdbuf();
+	unparsedCfgFileData = ss.str();
+
+	nlohmann::json parsedCfgFile = nlohmann::json::parse(unparsedCfgFileData);
+	std::string backend_name = parsedCfgFile[vidBackendKey].get<std::string>();
+	if (backend_name == "SDL")
+	{
+		config.backend = CBE::CBE_Backend::SDL;
+	}
+	else //TODO(fhomolka): When we have other rendering backends
+	{
+		config.backend = CBE::CBE_Backend::SDL;
+	}
+	
+	config.window.width = parsedCfgFile[windowWidthKey].get<int>();
+	config.window.width = parsedCfgFile[windowHeightKey].get<int>();
+
+	if (config.window.width < 1) config.window.width = 1280;
+	if (config.window.height < 1) config.window.height = 720;
+
+	bool isFullscreen = parsedCfgFile[fullscreenKey].get<bool>();
+	if (isFullscreen) {
+		config.window.flags |= SDL_WINDOW_FULLSCREEN;
+	}
+	else {
+		config.window.flags |= SDL_WINDOW_BORDERLESS; //eh
+	}
+	
+	
 }
 
 void Game::Run(){

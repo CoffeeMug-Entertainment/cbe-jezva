@@ -36,7 +36,7 @@ class Game{
         static InputManager *inputManager;
         static Logger *logger;
         static RandomNumberGenerator *rng;
-        static CoffeeBeanConfig config;
+        static CBE::CoffeeBeanConfig config;
         
         void LoadConfig(std::string filePath);
         void Run();
