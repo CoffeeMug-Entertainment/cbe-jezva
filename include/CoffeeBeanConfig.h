@@ -3,23 +3,32 @@
 
 #include <string>
 
-struct window_info
+namespace CBE
 {
-    int width;
-    int height;
+    enum class CBE_Backend
+    {
+        SDL = 0,
+        BACKEND_COUNT
+    };
 
-    int position_x;
-    int position_y;
+    struct window_info
+    {
+        int width;
+        int height;
 
-    int flags;
-};
+        int position_x;
+        int position_y;
+
+        int flags;
+    };
 
 
-struct CoffeeBeanConfig
-{
-    window_info window;
-    std::string title;
-};
-
+    struct CoffeeBeanConfig
+    {
+        window_info window;
+        std::string title;
+        CBE_Backend backend;
+    };
+}
 
 #endif
