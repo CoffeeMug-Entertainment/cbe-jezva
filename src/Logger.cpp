@@ -12,17 +12,15 @@ Logger::~Logger()
 	logFile.close();
 }
 
-void Logger::Log(std::string message)
+void Logger::Log(std::string_view message)
 {
-	std::string logMessage = message;
-
 	WriteToConsole(message);
 	WriteToLogFile(message);
 }
 
-void Logger::LogError(std::string message)
+void Logger::LogError(std::string_view message)
 {
-	std::string errorMsg = "[ERROR]: " + message;
+	std::string errorMsg = "[ERROR]: " + std::string(message);
 
 	WriteToErrorConsole(errorMsg);
 	WriteToLogFile(errorMsg);
@@ -33,17 +31,17 @@ void Logger::ClearLogFile()
 	
 }
 
-void Logger::WriteToLogFile(std::string message)
+void Logger::WriteToLogFile(std::string_view message)
 {
 	this->logFile << message << std::endl;
 }
 
-void Logger::WriteToConsole(std::string message)
+void Logger::WriteToConsole(std::string_view message)
 {
 	std::cout << message << std::endl;
 }
 
-void Logger::WriteToErrorConsole(std::string message)
+void Logger::WriteToErrorConsole(std::string_view message)
 {
 	std::cerr << message << std::endl;
 }

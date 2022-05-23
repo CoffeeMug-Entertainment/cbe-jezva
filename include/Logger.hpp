@@ -13,8 +13,8 @@ class Logger
 	public:
 		Logger();
 		~Logger();
-		void Log(std::string message);
-	    void LogError(std::string message);
+		void Log(std::string_view message);
+	    void LogError(std::string_view message);
 
 	    /*void TempLog(const char* caller, std::string message)
 	    {
@@ -25,10 +25,10 @@ class Logger
 
 		std::ofstream logFile;
 		void ClearLogFile();
-		void WriteToLogFile(std::string message);
+		void WriteToLogFile(std::string_view message);
 
-		void WriteToConsole(std::string message);
-		void WriteToErrorConsole(std::string message);
+		void WriteToConsole(std::string_view message);
+		void WriteToErrorConsole(std::string_view message);
 	};
 
 #endif
