@@ -3,7 +3,7 @@
 
 
 #include "../Constants.h"
-#include "CB_SDL.h"
+#include "SDL.h"
 #include <vector>
 #include <functional>
 #include "../Game.hpp"

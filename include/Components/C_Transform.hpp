@@ -1,7 +1,7 @@
 #ifndef CB_C_TRANSFORM
 #define CB_C_TRANSFORM
 
-#include "CB_SDL.h"
+#include "SDL.h"
 #include "../Component.hpp"
 #include "Types/Vector2.hpp"
 //#include "Game.hpp"

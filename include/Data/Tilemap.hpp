@@ -1,7 +1,7 @@
 #ifndef CB_TILEMAP
 #define CB_TILEMAP
 
-#include "CB_SDL.h"
+#include "SDL.h"
 #include <Types/Vector2.hpp>
 #include <string>
 
