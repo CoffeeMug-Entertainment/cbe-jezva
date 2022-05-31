@@ -27,6 +27,7 @@ SDL_Texture* TextureManager::LoadTexture(const char* fileName){
 		Game::logger->LogError("Unable to load texture " + std::string(fileName) + "\n\t" + std::string(stbi_failure_reason()));
 		surface = SDL_CreateRGBSurfaceWithFormatFrom((void*)MISSING_TEXTURE_IMG.pixel_data, MISSING_TEXTURE_IMG.width, MISSING_TEXTURE_IMG.height, 24, 4 * MISSING_TEXTURE_IMG.width, SDL_PIXELFORMAT_RGB24);
 		SDL_Texture* texture = Game::renderer->CreateTextureFromSurface(surface);
+		SDL_FreeSurface(surface);
 		return texture;
 		return nullptr;
 	}
