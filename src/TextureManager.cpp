@@ -3,6 +3,18 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+/* GIMP RGB C-Source image */
+
+static const struct {
+  unsigned int 	 width;
+  unsigned int 	 height;
+  unsigned int 	 bytes_per_pixel; /* 2:RGB16, 3:RGB, 4:RGBA */ 
+  unsigned char	 pixel_data[2 * 2 * 3 + 1];
+} MISSING_TEXTURE_IMG = {
+  2, 2, 3,
+  "\300\377\356E\040\000E\040\000\300\377\356",
+};
+
 SDL_Texture* TextureManager::LoadTexture(const char* fileName){
 
 	//TODO(fhomolka): Get some of the data from the coder, like the image format.
@@ -13,6 +25,9 @@ SDL_Texture* TextureManager::LoadTexture(const char* fileName){
 	if (img_data == NULL)
 	{
 		Game::logger->LogError("Unable to load texture " + std::string(fileName) + "\n\t" + std::string(stbi_failure_reason()));
+		surface = SDL_CreateRGBSurfaceWithFormatFrom((void*)MISSING_TEXTURE_IMG.pixel_data, MISSING_TEXTURE_IMG.width, MISSING_TEXTURE_IMG.height, 24, 4 * MISSING_TEXTURE_IMG.width, SDL_PIXELFORMAT_RGB24);
+		SDL_Texture* texture = Game::renderer->CreateTextureFromSurface(surface);
+		return texture;
 		return nullptr;
 	}
 	
