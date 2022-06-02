@@ -1,5 +1,8 @@
 # Milestones
 
+## 3.0.0
+- [ ] 3D
+
 ## 2.0.0
 
 ### Entity Management
@@ -7,6 +10,9 @@
 
 ### Graphics
 - [ ] SDL + GLAD renderer
+
+### Scripting
+- [ ] (?)Angelscript
 
 ## 1.1.0
 
