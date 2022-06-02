@@ -4,14 +4,43 @@
 #include <fstream>
 #include <sstream>
 
+/* GIMP RGB C-Source image */
+
+static const struct {
+  unsigned int 	 width;
+  unsigned int 	 height;
+  unsigned int 	 bytes_per_pixel; /* 2:RGB16, 3:RGB, 4:RGBA */ 
+  unsigned char	 pixel_data[2 * 2 * 3 + 1];
+} MISSING_TEXTURE_IMG = {
+  2, 2, 3,
+  "\300\377\356E\040\000E\040\000\300\377\356",
+};
+const std::string CBE_MISSING_TEXTURE_ID = "CBE_MISSING_TEXTURE";
+
 AssetManager::AssetManager(EntityManager* manager){
 	this->entityManager = manager;
+
+	
 }
+
 AssetManager::~AssetManager(){}
 
 void AssetManager::AddTexture(std::string textureId, const char* filePath) {
 
-	textures.emplace(textureId, TextureManager::LoadTexture(filePath));
+	SDL_Texture* newTex = TextureManager::LoadTexture(filePath);
+	if(newTex == nullptr) {
+		newTex = GetTexture(CBE_MISSING_TEXTURE_ID);
+		if (newTex == nullptr) { //We have not emplaced the 'texture missing' texture yet
+			// Add the 'missing texture' texture, to be referenced when a texture can't be found
+			SDL_Surface* missingTexSurface = SDL_CreateRGBSurfaceWithFormatFrom((void*)MISSING_TEXTURE_IMG.pixel_data, MISSING_TEXTURE_IMG.width, MISSING_TEXTURE_IMG.height, 24, 4 * MISSING_TEXTURE_IMG.width, SDL_PIXELFORMAT_RGB24);
+			SDL_Texture* missingTexTexture = Game::renderer->CreateTextureFromSurface(missingTexSurface);
+			SDL_FreeSurface(missingTexSurface);
+			textures.emplace(CBE_MISSING_TEXTURE_ID, missingTexTexture);
+
+			newTex = missingTexTexture;
+		}
+	}
+	textures.emplace(textureId, newTex);
 }
 
 SDL_Texture* AssetManager::GetTexture(std::string textureId) {
