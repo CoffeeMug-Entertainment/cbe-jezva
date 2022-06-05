@@ -80,7 +80,7 @@ void Game::LoadConfig(std::string filePath) {
 	}
 	
 	config.window.width = parsedCfgFile[windowWidthKey].get<int>();
-	config.window.width = parsedCfgFile[windowHeightKey].get<int>();
+	config.window.height = parsedCfgFile[windowHeightKey].get<int>();
 
 	if (config.window.width < 1) config.window.width = 1280;
 	if (config.window.height < 1) config.window.height = 720;
@@ -93,7 +93,6 @@ void Game::LoadConfig(std::string filePath) {
 		config.window.flags |= SDL_WINDOW_BORDERLESS; //eh
 	}
 	
-	
 }
 
 void Game::Run(){
@@ -102,6 +101,10 @@ void Game::Run(){
 }
 
 void Game::Initialize(int width, int height){
+
+	int desiredWidth = width > 0 ? width : config.window.width;
+	int desiredHeight = height > 0 ? height : config.window.height;
+
 	logger->Log("Initializing SDL!");
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         logger->LogError("Error Initializing SDL");
@@ -113,9 +116,9 @@ void Game::Initialize(int width, int height){
 			this->config.title.c_str(), 
 			SDL_WINDOWPOS_CENTERED, 
 			SDL_WINDOWPOS_CENTERED, 
-			width, 
-			height, 
-			SDL_WINDOW_BORDERLESS
+			desiredWidth, 
+			desiredHeight, 
+			config.window.flags
 	);
 
 	if (!window) {
@@ -123,7 +126,15 @@ void Game::Initialize(int width, int height){
 		return;
 	}
 
-	this->renderer = new Ren_SDL();
+	switch (config.backend)
+	{
+		case CBE::CBE_Backend::SDL :
+			this->renderer = new Ren_SDL();
+			break;
+		default:
+			this->renderer = new Ren_SDL();
+			break;
+	}
 
 	if(!this->renderer->Initialize()){
 		return;

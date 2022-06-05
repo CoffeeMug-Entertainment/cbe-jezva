@@ -40,7 +40,7 @@ class Game{
         
         void LoadConfig(std::string filePath);
         void Run();
-        void Initialize(int width, int height);
+        void Initialize(int width = 0, int height = 0);
         void MainLoop();
         void LoadLevel(/*std::string levelName*/);
         void ProcessInput();
