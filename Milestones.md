@@ -14,6 +14,9 @@
 ### Scripting
 - [ ] (?)Angelscript
 
+### Engine Design
+- [ ] (?)Turn library into exectuable, treat all game files as data (a:game code as DLL? b:scripting only?)
+
 ## 1.1.0
 
 ### Graphics
