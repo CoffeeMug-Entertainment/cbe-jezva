@@ -7,7 +7,9 @@ C_RigidBody2D::C_RigidBody2D(BodyType type) {
 	this->type = type;
 }
 
-C_RigidBody2D::~C_RigidBody2D(){}
+C_RigidBody2D::~C_RigidBody2D(){
+	Game::entityManager->box2DWorld->DestroyBody(this->body);
+}
 
 void C_RigidBody2D::Initialize() {
 	this->bodyTransform = this->owner->GetComponent<C_Transform>();
