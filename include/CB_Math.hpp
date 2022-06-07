@@ -1,8 +1,6 @@
 #ifndef CB_MATH
 #define CB_MATH
 
-#include <cmath>
-
 namespace CB
 {
 

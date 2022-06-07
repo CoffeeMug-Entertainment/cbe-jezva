@@ -26,7 +26,6 @@ class Game{
         Game(std::string title);
         ~Game();
         bool IsRunning() const;
-        //static SDL_Renderer *renderer;
         static CB_Renderer *renderer;
         static SDL_Window *window;
         static SDL_Event event;
@@ -42,7 +41,6 @@ class Game{
         void Run();
         void Initialize(int width = 0, int height = 0);
         void MainLoop();
-        void LoadLevel(/*std::string levelName*/);
         void ProcessInput();
         void Update();
         void Render();

@@ -48,7 +48,6 @@ class EntityManager{
 	private:
 		std::vector<Entity*> entities;
 		BasicListener contactListener;
-		//bool AABBCollisionCheck(C_Collider* firstEntity, C_Collider* secondEntity);
 };
 
 #endif

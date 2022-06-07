@@ -160,11 +160,6 @@ void Game::MainLoop(){
     Destroy();
 }
 
-void Game::LoadLevel(/*std::string levelName*/){
-
-
-}
-
 void Game::ProcessInput(){
 	SDL_PollEvent(&event);
 
