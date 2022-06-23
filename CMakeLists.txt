@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.23.1)
 project(CoffeeBean)
 
+set(CMAKE_CXX_STANDARD 20)
+
 file(GLOB_RECURSE sources src/*.cpp src/*.c thirdparty/Simple-SDL2-Audio/src/audio.c)
 file(GLOB_RECURSE includes include/*.hpp include/*.h)
 
