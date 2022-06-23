@@ -24,3 +24,23 @@ add_subdirectory(thirdparty/box2d/)
 
 find_package(SDL2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} SDL2::SDL2 box2d)
+
+option(BUILD_BEANPONG "Build the example probject" OFF)
+if(BUILD_BEANPONG)
+    file(GLOB_RECURSE beanpong_sources example/src/*.c example/src/*.cpp example/src/*.h example/src/*.hpp)
+    add_executable(BeanPong beanpong_sources)
+    IF(MINGW)
+        target_link_libraries(BeanPong -static-libstdc++)
+        target_link_libraries(BeanPong -static-libgcc)
+        target_link_libraries(BeanPong mingw32)
+    ENDIF(MINGW)
+
+    IF(WIN32)
+        target_link_libraries(BeanPong SDL2main)
+    ENDIF(WIN32)
+
+    target_link_libraries(BeanPong CoffeeBean)
+
+    file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+endif(BUILD_BEANPONG)
+
