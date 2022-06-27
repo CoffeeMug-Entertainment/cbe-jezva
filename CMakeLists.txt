@@ -29,8 +29,8 @@ target_link_libraries(${PROJECT_NAME} SDL2::SDL2 box2d)
 
 option(BUILD_BEANPONG "Build the example probject" OFF)
 if(BUILD_BEANPONG)
-    file(GLOB_RECURSE beanpong_sources example/src/*.c example/src/*.cpp example/src/*.h example/src/*.hpp)
-    add_executable(BeanPong beanpong_sources)
+    file(GLOB_RECURSE beanpong_sources example/BeanPong/src/*.c example/BeanPong/src/*.cpp example/BeanPong/src/*.h example/BeanPong/src/*.hpp)
+    add_executable(BeanPong ${beanpong_sources})
     IF(MINGW)
         target_link_libraries(BeanPong -static-libstdc++)
         target_link_libraries(BeanPong -static-libgcc)
@@ -43,6 +43,6 @@ if(BUILD_BEANPONG)
 
     target_link_libraries(BeanPong CoffeeBean)
 
-    file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY example/BeanPong/assets DESTINATION ${CMAKE_BINARY_DIR})
 endif(BUILD_BEANPONG)
 
