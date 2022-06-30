@@ -22,10 +22,8 @@ class AssetManager {
 		SDL_Texture* GetTexture(std::string textureId);
 		void AddFont(std::string fontId, const char* filePath, int fontSize);
 		sdl_stb_font_cache* GetFont(std::string fontId);
-        void AddSFX(std::string sfxId, const char* filePath);
-        Audio* GetSFX(std::string sfxId);
-        void AddMusic(std::string musicId, const char* filePath);
-        Audio* GetMusic(std::string musicId);
+        void AddWave(std::string waveId, const char* filePath);
+        CB::Wave* GetWave(std::string waveId);
         void LoadFromAssetsJson(const char* filePath);
         void AddTilemap(std::string textureId, std::string tilemapId, int tileSize, int margin = 0);
         CB::Tilemap* GetTilemap(std::string tilemapId);
@@ -33,8 +31,7 @@ class AssetManager {
         EntityManager* entityManager;
         std::map<std::string, SDL_Texture*> textures;
         std::map<std::string, sdl_stb_font_cache*> fonts;
-        std::map<std::string, Audio*> sfx;
-        std::map<std::string, Audio*> music;
+        std::map<std::string, CB::Wave*> waves;
         std::map<std::string, CB::Tilemap*> tilemaps;
 };
 

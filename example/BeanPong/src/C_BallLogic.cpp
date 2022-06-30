@@ -31,14 +31,14 @@ void C_BallLogic::Update(float deltaTime)
 		CB::Vec2 ballVel = ballRigidBody->GetVelocity();
 		ballVel.y = std::abs(ballVel.y);
 		ballRigidBody->SetVelocity(ballVel);
-		AudioManager::PlayWav(Game::assetManager->GetSFX("bounce"));
+		AudioManager::PlayWav(Game::assetManager->GetWave("bounce"));
 	}
 	else if (this->ballTransform->position.y + this->ballTransform->height >= 599)
 	{
 		CB::Vec2 ballVel = ballRigidBody->GetVelocity();
 		ballVel.y = -std::abs(ballVel.y);
 		ballRigidBody->SetVelocity(ballVel);
-		AudioManager::PlayWav(Game::assetManager->GetSFX("bounce"));
+		AudioManager::PlayWav(Game::assetManager->GetWave("bounce"));
 	}
 
 	if (this->ballTransform->position.x <= 1)
@@ -76,7 +76,7 @@ void C_BallLogic::OnCollisionReported(Entity* otherEntity)
 
 		ballRigidBody->SetVelocity(ballVel);
 
-		AudioManager::PlayWav(Game::assetManager->GetSFX("bounce"));
+		AudioManager::PlayWav(Game::assetManager->GetWave("bounce"));
 		return;
 	}
 

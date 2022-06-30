@@ -74,32 +74,20 @@ CB::Tilemap* AssetManager::GetTilemap(std::string tilemapId) {
 	return this->tilemaps[tilemapId];
 }
 
-void AssetManager::AddSFX(std::string sfxId, const char* filePath) {
-	sfx.emplace(sfxId, AudioManager::LoadWav(filePath));
+void AssetManager::AddWave(std::string waveId, const char* filePath) {
+	waves.emplace(waveId, AudioManager::LoadWave(filePath));
 }
 
-Audio* AssetManager::GetSFX(std::string sfxId) {
-	auto iter = this->sfx.find(sfxId);
-	if (iter == sfx.end()) return nullptr;
+CB::Wave* AssetManager::GetWave(std::string waveId) {
+	auto iter = this->waves.find(waveId);
+	if (iter == waves.end()) return nullptr;
 
-	return sfx[sfxId];
-}
-
-void AssetManager::AddMusic(std::string musicId, const char* filePath){
-	music.emplace(musicId, AudioManager::LoadWav(filePath, true));
-}
-
-Audio* AssetManager::GetMusic(std::string musicId){
-	auto iter = this->music.find(musicId);
-	if (iter == music.end()) return nullptr;
-	
-	return music[musicId];
+	return this->waves[waveId];
 }
 
 const char* fontsKey = "Fonts";
 const char* texturesKey = "Textures";
-const char* sfxKey = "SFX";
-const char* musicKey = "Music";
+const char* audioKey = "Audio";
 const char* tilemapsKey = "Tilemaps";
 
 void AssetManager::LoadFromAssetsJson(const char* filePath)
@@ -141,22 +129,13 @@ void AssetManager::LoadFromAssetsJson(const char* filePath)
 		this->AddTexture(newTexture.id, newTexture.filePath.c_str());
 	}
 
-	for(const auto& f : parsedAssetFile[sfxKey])
+	for(const auto& f : parsedAssetFile[audioKey])
 	{
 		AudioInfo newSFX;
 		newSFX.id = f["id"].get<std::string>();
 		newSFX.filePath = f["path"].get<std::string>();
 
-		this->AddSFX(newSFX.id, newSFX.filePath.c_str());
-	}
-
-	for(const auto& f : parsedAssetFile[musicKey])
-	{
-		AudioInfo newMusic;
-		newMusic.id = f["id"].get<std::string>();
-		newMusic.filePath = f["path"].get<std::string>();
-
-		this->AddMusic(newMusic.id, newMusic.filePath.c_str());
+		this->AddWave(newSFX.id, newSFX.filePath.c_str());
 	}
 
 	for(const auto& f : parsedAssetFile[tilemapsKey])

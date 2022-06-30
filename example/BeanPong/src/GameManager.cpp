@@ -79,7 +79,7 @@ void GameManager::MakeEntities()
 	* Volume value optional (0.0f - 1.0f), if omitted, it will be played at max volume
 	* For SFX check C_BallLogic::Update or GameManager::Pointscored
 	*/
-	AudioManager::PlayWav(Game::assetManager->GetMusic("relax"));
+	AudioManager::PlayWav(Game::assetManager->GetWave("relax"));
 }
 
 void GameManager::SetGame()
@@ -96,13 +96,13 @@ void GameManager::PointScored(int playerId)
 			Game::logger->Log("Player Scored!");
 			this->playerScore += 1;
 			this->playerScoreLabel->SetLabelText(std::to_string(playerScore));
-			AudioManager::PlayWav(Game::assetManager->GetSFX("player_score"));
+			AudioManager::PlayWav(Game::assetManager->GetWave("player_score"));
 			break;
 		case 1:
 			Game::logger->Log("AI Scored!");
 			this->aiScore += 1;
 			this->aiScoreLabel->SetLabelText(std::to_string(aiScore));
-			AudioManager::PlayWav(Game::assetManager->GetSFX("ai_score"));
+			AudioManager::PlayWav(Game::assetManager->GetWave("ai_score"));
 			break;
 		default: //Here to silence warnings and check if it's snowing in hell
 			Game::logger->Log("The heck?");

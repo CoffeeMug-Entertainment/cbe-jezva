@@ -1,22 +1,66 @@
 #include "AudioManager.hpp"
 #include "Game.hpp"
+#include "Data/Wave.hpp"
 #include <algorithm>
+#include <fstream>
 
-Audio* AudioManager::LoadWav(const char* fileName, bool loop) {
+CB::Wave* LoadWav(const char* fileData, unsigned int fileSize)
+{
+    CB::Wave* newWav = new CB::Wave();
+    drwav wav_as_drwav;
 
-    int compatLoopBool = loop ? 1 : 0;
-    Audio* newAudio = createAudio(fileName, compatLoopBool, SDL_MIX_MAXVOLUME);
+    bool ret = drwav_init_memory(&wav_as_drwav, fileData, fileSize, 0);
 
-    if (newAudio == NULL) {
-        Game::logger->LogError("Failed to load audio file: " + std::string(SDL_GetError()));
+    if(!ret)
+    {
+        Game::logger->LogError("Failed to load WAV file");
         return nullptr;
     }
 
-    return newAudio;
+    newWav->FromDRWav(wav_as_drwav);
+
+    drwav_uninit(&wav_as_drwav);
+
+    return newWav;
+
 }
 
-void AudioManager::PlayWav(Audio* audioData, float volume) {
+CB::Wave* AudioManager::LoadWave(const char* fileName) {
+
+    CB::Wave* newWave = nullptr;
+    std::ifstream fileStream(fileName, std::ios::binary);
+    fileStream.seekg(0, std::ios::end);
+    unsigned int fileSize = fileStream.tellg();
+    
+    char first_four_chars[4];
+    fileStream.read(first_four_chars, 4);
+    std::string first_four_string = "";
+    fileStream.seekg(0, std::ios::beg);
+
+    for (size_t i = 0; i < 4; i++)
+    {
+        std::string s(1, first_four_chars[i]);
+        first_four_string += s;
+    }
+    
+    if (first_four_string == "RIFF")
+    {
+        Game::logger->Log("Assuming " + std::string(fileName) + " is a Wave file");
+        char buffer[fileSize];
+        fileStream.read(buffer, fileSize);
+        newWave = LoadWav(buffer, fileSize);
+    }
+    else
+    {
+        Game::logger->LogError(std::string(fileName) + " is a file of unsupported type!");
+    }
+    
+    fileStream.close();
+    return newWave;
+}
+
+void AudioManager::PlayWav(CB::Wave* audioData, float volume) {
     float realVolume = std::clamp<float>(volume, 0, 1);
     int intVolume = SDL_MIX_MAXVOLUME * realVolume;
-    playSoundFromMemory(audioData, intVolume);
+    //TODO(fhomolka): have OpenAL play;
 }
