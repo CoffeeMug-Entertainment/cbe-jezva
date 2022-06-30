@@ -31,6 +31,7 @@ CB::Wave* AudioManager::LoadWave(const char* fileName) {
     std::ifstream fileStream(fileName, std::ios::binary);
     fileStream.seekg(0, std::ios::end);
     unsigned int fileSize = fileStream.tellg();
+    fileStream.seekg(0, std::ios::beg);
     
     char first_four_chars[4];
     fileStream.read(first_four_chars, 4);
