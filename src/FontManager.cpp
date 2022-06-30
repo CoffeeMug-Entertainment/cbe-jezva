@@ -2,10 +2,7 @@
 #include "Game.hpp"
 #include "Renderers/Ren_SDL.hpp"
 
-#define STB_TRUETYPE_IMPLEMENTATION
 #include "stb_truetype.h"
-#define STB_TRUETYPE_INCLUDE_HANDLED
-#define SDL_STB_FONT_IMPL
 #include "sdlStbFont.h"
 
 sdl_stb_font_cache* FontManager::LoadFont(const char* fileName, int fontSize){
