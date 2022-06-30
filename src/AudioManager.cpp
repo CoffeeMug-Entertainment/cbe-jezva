@@ -35,16 +35,13 @@ CB::Wave* AudioManager::LoadWave(const char* fileName) {
     
     char first_four_chars[4];
     fileStream.read(first_four_chars, 4);
-    std::string first_four_string = "";
     fileStream.seekg(0, std::ios::beg);
 
-    for (size_t i = 0; i < 4; i++)
-    {
-        std::string s(1, first_four_chars[i]);
-        first_four_string += s;
-    }
-    
-    if (first_four_string == "RIFF")
+    if (first_four_chars[0] == 'R' &&
+        first_four_chars[1] == 'I' &&
+        first_four_chars[2] == 'F' &&
+        first_four_chars[3] == 'F'
+        )
     {
         Game::logger->Log("Assuming " + std::string(fileName) + " is a Wave file");
         char buffer[fileSize];
