@@ -22,3 +22,6 @@
 [submodule "thirdparty/box2d"]
 	path = thirdparty/box2d
 	url = https://github.com/CoffeeMug-Entertainment/box2d.git
+[submodule "thirdparty/dr_libs"]
+	path = thirdparty/dr_libs
+	url = https://github.com/mackron/dr_libs.git
