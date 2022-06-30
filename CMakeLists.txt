@@ -14,6 +14,7 @@ include_directories(include)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/SDL2/include)
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/stb)
+target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/dr_libs)
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/sokol)
 target_include_directories(${PROJECT_NAME} PUBLIC thirdparty/Simple-SDL2-Audio/src)
 target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC thirdparty/sdl_stb_font) #Not system, but this thing has a ton of warnings
