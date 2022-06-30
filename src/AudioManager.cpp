@@ -57,8 +57,7 @@ CB::Wave* AudioManager::LoadWave(const char* fileName) {
     return newWave;
 }
 
-void AudioManager::PlayWav(CB::Wave* audioData, float volume) {
-    float realVolume = std::clamp<float>(volume, 0, 1);
-    int intVolume = SDL_MIX_MAXVOLUME * realVolume;
-    //TODO(fhomolka): have OpenAL play;
+void AudioManager::PlayWav(CB::Wave* audioData) {
+
+    Game::audioManager->BufferAndPlay(audioData);
 }

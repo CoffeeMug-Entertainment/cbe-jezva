@@ -15,6 +15,7 @@
 #include "Logger.hpp"
 #include "RandomNumberGenerator.hpp"
 #include "Renderers/CB_Renderer.hpp"
+#include "Audio/Aud_OpenAL.hpp"
 
 
 class EntityManager;
@@ -27,6 +28,7 @@ class Game{
         ~Game();
         bool IsRunning() const;
         static CB_Renderer *renderer;
+        static Aud_OpenAL *audioManager;
         static SDL_Window *window;
         static SDL_Event event;
         static SDL_Rect camera;

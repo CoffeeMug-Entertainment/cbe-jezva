@@ -7,7 +7,7 @@ class AudioManager
 {
     public:
     static CB::Wave* LoadWave(const char* fileName);
-    static void PlayWav(CB::Wave* audioData, float volume = 1.0f);
+    static void PlayWav(CB::Wave* audioData);
 
 };
 

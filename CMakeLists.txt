@@ -26,7 +26,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 add_subdirectory(thirdparty/box2d/)
 
 find_package(SDL2 REQUIRED)
-target_link_libraries(${PROJECT_NAME} SDL2::SDL2 box2d)
+target_link_libraries(${PROJECT_NAME} SDL2::SDL2 box2d openal)
 
 option(BUILD_BEANPONG "Build the example probject" OFF)
 if(BUILD_BEANPONG)

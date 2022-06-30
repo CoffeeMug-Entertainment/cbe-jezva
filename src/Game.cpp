@@ -1,10 +1,10 @@
 #include "Game.hpp"
 #include "EntityManager.hpp"
 #include "Renderers/Ren_SDL.hpp"
-#include "audio.h"
 
 //SDL_Renderer* Game::renderer;
 CB_Renderer* Game::renderer;
+Aud_OpenAL *Game::audioManager;
 SDL_Window* Game::window;
 AssetManager* Game::assetManager;
 EntityManager* Game::entityManager;
@@ -142,7 +142,7 @@ void Game::Initialize(int width, int height){
 
 	this->renderer->SetClearColour(CB::Colour{0.08f, 0.08f, 0.08f, 1.0f});
 
-	initAudio();
+	this->audioManager = new Aud_OpenAL();
 
 	isRunning = true;
 	//return;
@@ -208,10 +208,10 @@ void Game::Render(){
 }
 
 void Game::Destroy(){
+	logger->Log("Destroing Audio Manager");
+	delete audioManager;
     logger->Log("Destroying renderer");
 	delete renderer;
-	logger->Log("Ending Audio");
-	endAudio();
     logger->Log("Destroying window");
 	SDL_DestroyWindow(window);
     logger->Log("Qutting SDL");

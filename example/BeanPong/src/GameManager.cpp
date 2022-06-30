@@ -79,7 +79,8 @@ void GameManager::MakeEntities()
 	* Volume value optional (0.0f - 1.0f), if omitted, it will be played at max volume
 	* For SFX check C_BallLogic::Update or GameManager::Pointscored
 	*/
-	AudioManager::PlayWav(Game::assetManager->GetWave("relax"));
+	CB::Wave* song = Game::assetManager->GetWave("relax");
+	if(song != nullptr) AudioManager::PlayWav(song);
 }
 
 void GameManager::SetGame()
