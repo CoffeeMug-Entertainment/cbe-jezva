@@ -2,6 +2,7 @@
 
 if #arg < 1 then
     print("USAGE:\nmake_component [component name]")
+    os.exit()
 end
 
 local COMPONENT_STRING =
